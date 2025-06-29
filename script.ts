@@ -62,21 +62,27 @@ backToTopBtn?.addEventListener('click', (e) => {
 
 // Mobile Navigation Toggle
 function toggleMobileMenu() {
-    hamburger?.classList.toggle('active');
-    navMenu?.classList.toggle('active');
-    
-    // Prevent body scroll when menu is open
-    if (navMenu?.classList.contains('active')) {
-        document.body.style.overflow = 'hidden';
-    } else {
-        document.body.style.overflow = 'auto';
+    // Only toggle mobile menu on devices with width <= 1024px
+    if (window.innerWidth <= 1024) {
+        hamburger?.classList.toggle('active');
+        navMenu?.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (navMenu?.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
     }
 }
 
 function closeMobileMenu() {
-    hamburger?.classList.remove('active');
-    navMenu?.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    // Only close mobile menu on devices where it might be active
+    if (window.innerWidth <= 1024) {
+        hamburger?.classList.remove('active');
+        navMenu?.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
 }
 
 hamburger?.addEventListener('click', (e) => {
@@ -111,7 +117,8 @@ navLinks.forEach(link => {
 // Close mobile menu when clicking outside
 document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
-    if (navMenu?.classList.contains('active') && 
+    if (window.innerWidth <= 1024 && 
+        navMenu?.classList.contains('active') && 
         !navMenu.contains(target) && 
         !hamburger?.contains(target)) {
         closeMobileMenu();
@@ -121,7 +128,8 @@ document.addEventListener('click', (e) => {
 // Close mobile menu when touching outside (mobile)
 document.addEventListener('touchstart', (e) => {
     const target = e.target as HTMLElement;
-    if (navMenu?.classList.contains('active') && 
+    if (window.innerWidth <= 1024 && 
+        navMenu?.classList.contains('active') && 
         !navMenu.contains(target) && 
         !hamburger?.contains(target)) {
         closeMobileMenu();
@@ -130,14 +138,20 @@ document.addEventListener('touchstart', (e) => {
 
 // Handle window resize
 window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 1024) {
         closeMobileMenu();
+        // Ensure navbar is in correct state for desktop
+        document.body.style.overflow = 'auto';
+        hamburger?.classList.remove('active');
+        navMenu?.classList.remove('active');
     }
 });
 
 // Handle escape key to close mobile menu
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navMenu?.classList.contains('active')) {
+    if (e.key === 'Escape' && 
+        window.innerWidth <= 1024 && 
+        navMenu?.classList.contains('active')) {
         closeMobileMenu();
     }
 });
@@ -145,13 +159,13 @@ document.addEventListener('keydown', (e) => {
 // Prevent scrolling on mobile when menu is open
 let startY = 0;
 document.addEventListener('touchstart', (e) => {
-    if (navMenu?.classList.contains('active')) {
+    if (window.innerWidth <= 1024 && navMenu?.classList.contains('active')) {
         startY = e.touches[0].clientY;
     }
 }, { passive: true });
 
 document.addEventListener('touchmove', (e) => {
-    if (navMenu?.classList.contains('active')) {
+    if (window.innerWidth <= 1024 && navMenu?.classList.contains('active')) {
         const target = e.target as HTMLElement;
         if (!navMenu.contains(target)) {
             e.preventDefault();
