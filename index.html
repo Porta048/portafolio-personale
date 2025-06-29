@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Portfolio</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <canvas id="matrix-canvas"></canvas>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Hi, I'm <span class="highlight">Alessandro di Martino</span></h1>
+                    <h2>Full Stack Developer & AI Specialist • Born in 2005</h2>
+                    <p class="hero-description">
+                        Passionate developer with experience in modern technologies.
+                        I create innovative and high-performance solutions for web and artificial intelligence.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="projects.html" class="btn-new">My Projects</a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/alessandro-di-martino-a55752334/" target="_blank" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/Porta048" target="_blank" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://x.com/Alessan45064151" target="_blank" class="social-link" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/ale._.dimartino" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <h3 class="skills-title">My Skills</h3>
+                    <div class="keyboard-container">
+                        <div class="keyboard">
+                            <div class="keyboard-row">
+                                <div class="key" data-tooltip="HTML5"><i class="fab fa-html5"></i></div>
+                                <div class="key" data-tooltip="CSS3"><i class="fab fa-css3-alt"></i></div>
+                                <div class="key" data-tooltip="JavaScript"><i class="fab fa-js-square"></i></div>
+                                <div class="key" data-tooltip="React"><i class="fab fa-react"></i></div>
+                                <div class="key" data-tooltip="Node.js"><i class="fab fa-node-js"></i></div>
+                            </div>
+                            <div class="keyboard-row">
+                                <div class="key" data-tooltip="Python"><i class="fab fa-python"></i></div>
+                                <div class="key" data-tooltip="AI"><i class="fas fa-brain"></i></div>
+                                <div class="key" data-tooltip="Machine Learning"><i class="fas fa-robot"></i></div>
+                                <div class="key" data-tooltip="Supabase">
+                                    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Supabase</title><path d="M8.882 3.882a.3.3 0 0 0-.424 0L.3 12l8.158 8.118a.3.3 0 0 0 .424 0l2.224-2.223a.3.3 0 0 0 0-.425L5.73 12.094a.3.3 0 0 1 0-.425l5.376-5.34a.3.3 0 0 0 0-.425L8.882 3.882zM23.7 12l-8.158 8.118a.3.3 0 0 1-.424 0L12.9 17.894a.3.3 0 0 1 0-.425l5.376-5.376a.3.3 0 0 0 0-.425L12.9 6.326a.3.3 0 0 1 0-.425L15.124 3.882a.3.3 0 0 1 .424 0L23.7 12z"/></svg>
+                                </div>
+                                <div class="key" data-tooltip="Git"><i class="fab fa-git-alt"></i></div>
+                            </div>
+                            <div class="keyboard-row">
+                                <div class="key key-spacebar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="tooltip" role="tooltip"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2025 Alessandro di Martino. All rights reserved.</p>
+                    <p class="email-link">
+                        <a href="mailto:alessandrodimartino06@gmail.com">
+                            <i class="fas fa-envelope"></i> alessandrodimartino06@gmail.com
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#home" class="back-to-top-btn" id="scrollToTopBtn" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script type="module" src="script.ts"></script>
+</body>
+</html> 
+

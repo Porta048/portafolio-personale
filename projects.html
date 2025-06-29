@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Portfolio</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="projects-container">
+                <canvas id="plexus-canvas"></canvas>
+                <div class="section-header">
+                    <h2>Explore my Code Universe</h2>
+                    <div class="github-chart-container">
+                        <img id="github-chart" src="https://ghchart.rshah.org/F87060/Porta048" alt="GitHub Contributions Chart of Porta048" />
+                    </div>
+                </div>
+                <div class="github-showcase">
+                    <a href="https://github.com/Porta048" class="github-link-main" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                        <span>Visit my GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2025 Alessandro di Martino. All rights reserved.</p>
+                    <p class="email-link">
+                        <a href="mailto:alessandrodimartino06@gmail.com">
+                            <i class="fas fa-envelope"></i> alessandrodimartino06@gmail.com
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top-btn" id="scrollToTopBtn" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script type="module" src="script.ts"></script>
+</body>
+</html> 
