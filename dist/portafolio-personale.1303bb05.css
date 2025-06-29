@@ -28,6 +28,11 @@ body {
   overflow-x: hidden;
 }
 
+body.projects-page {
+  background-color: #0c1c33;
+  background-image: none;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -656,24 +661,46 @@ body {
 
 .projects {
   background-color: #0000;
-  padding: 120px 0;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+  padding: 4rem 0;
+  display: flex;
   position: relative;
   overflow: hidden;
 }
 
 .projects-container {
   z-index: 2;
+  flex-direction: column;
+  align-items: center;
   padding: 0 20px;
+  display: flex;
   position: relative;
 }
 
+@keyframes pulse-plexus {
+  0% {
+    opacity: .3;
+  }
+
+  50% {
+    opacity: .6;
+  }
+
+  100% {
+    opacity: .3;
+  }
+}
+
 #plexus-canvas {
-  z-index: 1;
-  opacity: .15;
+  z-index: -1;
   pointer-events: none;
+  filter: hue-rotate(20deg) brightness(1.1);
   width: 100%;
   height: 100%;
-  position: absolute;
+  animation: 10s ease-in-out infinite pulse-plexus;
+  position: fixed;
   top: 0;
   left: 0;
 }
@@ -692,7 +719,8 @@ body {
 
 .github-chart-container {
   text-align: center;
-  margin-top: 3rem;
+  width: 100%;
+  margin-top: 5rem;
 }
 
 .github-chart-container img {
@@ -713,7 +741,7 @@ body {
 
 .github-showcase {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
 
 .github-link-main {
@@ -723,7 +751,7 @@ body {
   border-radius: 50px;
   align-items: center;
   gap: 1rem;
-  padding: 1.2rem 2.5rem;
+  padding: 1.2rem 1.8rem;
   font-size: 1.2rem;
   font-weight: 600;
   text-decoration: none;
@@ -973,9 +1001,9 @@ body {
 
   .hero {
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
-    padding: 0;
+    padding: 80px 0 40px;
     display: flex;
   }
 
@@ -983,7 +1011,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 100vh;
+    min-height: auto;
     padding: 1rem 20px;
     display: flex;
   }
@@ -1005,6 +1033,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-top: 2rem;
     display: flex;
   }
 
@@ -1014,6 +1043,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-bottom: 2rem;
     display: flex;
   }
 
@@ -1069,20 +1099,45 @@ body {
     font-size: 1.3rem;
   }
 
+  .key {
+    border-radius: 10px;
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+    box-shadow: 0 15px #102542, 0 20px 25px #0006;
+  }
+
+  .key:hover {
+    transform: translateY(8px);
+    box-shadow: 0 7px #102542, 0 12px 20px #00000080;
+  }
+
+  .key i, .key svg {
+    font-size: 1.8rem;
+  }
+
+  .key svg {
+    width: 28px;
+    height: 28px;
+  }
+
   .keyboard-container {
     justify-content: center;
     align-items: center;
-    width: 300px;
-    height: 300px;
-    margin: 0 auto 1rem;
+    width: 350px;
+    height: 350px;
+    margin: 1.5rem auto 2rem;
     display: flex;
-    transform: scale(.75);
+    transform: scale(.9);
   }
 
   .skills-title {
     text-align: center;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
+    color: #f87060;
+    text-shadow: 0 2px 4px #0000004d;
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    font-weight: 700;
   }
 
   .about {
@@ -1159,7 +1214,16 @@ body {
   }
 
   .projects {
+    min-height: auto;
     padding: 4rem 0;
+    display: block;
+  }
+
+  .projects-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    display: flex;
   }
 
   .projects .section-header h2 {
@@ -1181,16 +1245,15 @@ body {
   .github-chart-container img {
     max-width: 100%;
     height: auto;
-    transform: scale(.9);
   }
 
   .github-showcase {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 4rem;
   }
 
   .github-link-main {
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     font-size: 1rem;
   }
 
@@ -1225,9 +1288,14 @@ body {
   }
 
   #tooltip {
-    max-width: 200px;
-    padding: .4rem .8rem;
-    font-size: .8rem;
+    backdrop-filter: blur(10px);
+    background-color: #102542f2;
+    border: 1px solid #f870604d;
+    border-radius: 8px;
+    max-width: 250px;
+    padding: .6rem 1rem;
+    font-size: .9rem;
+    box-shadow: 0 4px 15px #0006;
   }
 
   .page-content {
@@ -1284,16 +1352,40 @@ body {
     font-size: 1.2rem;
   }
 
+  .key {
+    width: 65px;
+    height: 65px;
+    font-size: 1.8rem;
+    box-shadow: 0 12px #102542, 0 18px 20px #0006;
+  }
+
+  .key:hover {
+    transform: translateY(6px);
+    box-shadow: 0 6px #102542, 0 10px 15px #00000080;
+  }
+
+  .key i, .key svg {
+    font-size: 1.6rem;
+  }
+
+  .key svg {
+    width: 24px;
+    height: 24px;
+  }
+
   .keyboard-container {
-    width: 250px;
-    height: 250px;
-    margin: 0 auto .5rem;
-    transform: scale(.65);
+    width: 320px;
+    height: 320px;
+    margin: 1rem auto 1.5rem;
+    transform: scale(.8);
   }
 
   .skills-title {
-    margin-bottom: .8rem;
-    font-size: 1.1rem;
+    color: #f87060;
+    text-shadow: 0 2px 4px #0000004d;
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+    font-weight: 700;
   }
 
   .about-title-column h2 {
@@ -1402,16 +1494,40 @@ body {
     font-size: 1.1rem;
   }
 
+  .key {
+    width: 60px;
+    height: 60px;
+    font-size: 1.6rem;
+    box-shadow: 0 10px #102542, 0 15px 18px #0006;
+  }
+
+  .key:hover {
+    transform: translateY(5px);
+    box-shadow: 0 5px #102542, 0 8px 12px #00000080;
+  }
+
+  .key i, .key svg {
+    font-size: 1.4rem;
+  }
+
+  .key svg {
+    width: 22px;
+    height: 22px;
+  }
+
   .keyboard-container {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto .5rem;
-    transform: scale(.55);
+    width: 280px;
+    height: 280px;
+    margin: 1rem auto;
+    transform: scale(.7);
   }
 
   .skills-title {
-    margin-bottom: .6rem;
-    font-size: 1rem;
+    color: #f87060;
+    text-shadow: 0 2px 4px #0000004d;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
   }
 
   .about-title-column h2 {
@@ -1472,14 +1588,17 @@ body {
   }
 
   .keyboard-container {
-    width: 200px;
-    height: 200px;
-    transform: scale(.6);
+    width: 280px;
+    height: 280px;
+    transform: scale(.75);
   }
 
   .skills-title {
-    margin-bottom: .5rem;
-    font-size: 1rem;
+    color: #f87060;
+    text-shadow: 0 2px 4px #0000004d;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
   }
 }
 
@@ -1502,9 +1621,9 @@ body {
   }
 
   .keyboard-container {
-    width: 180px;
-    height: 180px;
-    transform: scale(.5);
+    width: 250px;
+    height: 250px;
+    transform: scale(.65);
   }
 }
 

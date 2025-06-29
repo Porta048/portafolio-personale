@@ -38,6 +38,11 @@ body {
     overflow-x: hidden;
 }
 
+body.projects-page {
+    background-image: none; /* Rimuove lo sfondo a griglia solo per questa pagina */
+    background-color: #0c1c33;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -536,8 +541,6 @@ body {
     padding-top: 4rem; /* Spazio per il titolo sticky */
 }
 
-
-
 .about-title-column h2 {
     font-size: 3rem;
     font-weight: 700;
@@ -570,10 +573,6 @@ body {
     border: none;
     border-radius: 12px;
 }
-
-
-
-
 
 .about-details-column {
     padding-left: 2rem;
@@ -686,27 +685,41 @@ body {
 
 /* Projects Section */
 .projects {
-    padding: 120px 0;
+    padding: 4rem 0; /* Mantiene una spaziatura verticale minima */
     background-color: transparent;
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px); /* Occupa l'altezza della viewport meno la navbar */
 }
 
 .projects-container {
     position: relative;
     z-index: 2;
     padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@keyframes pulse-plexus {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0.3; }
 }
 
 #plexus-canvas {
-    position: absolute;
+    position: fixed; /* Fissa l'animazione allo sfondo */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    opacity: 0.15;
+    z-index: -1; /* Lo posiziona dietro a tutto il contenuto */
     pointer-events: none;
+    animation: pulse-plexus 10s ease-in-out infinite;
+    filter: hue-rotate(20deg) brightness(1.1); /* Aggiunge un tocco di colore e luminosità */
 }
 
 .projects .section-header h2 {
@@ -722,8 +735,9 @@ body {
 }
 
 .github-chart-container {
-    margin-top: 3rem;
+    margin-top: 5rem;
     text-align: center;
+    width: 100%;
 }
 
 .github-chart-container img {
@@ -744,14 +758,14 @@ body {
 
 .github-showcase {
     text-align: center;
-    margin-top: 3rem;
+    margin-top: 5rem;
 }
 
 .github-link-main {
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    padding: 1.2rem 2.5rem;
+    padding: 1.2rem 1.8rem;
     background-color: #16223a;
     color: #edf2f4;
     border-radius: 50px;
@@ -1022,9 +1036,9 @@ body {
     /* Hero Section Mobile */
     .hero {
         min-height: 100vh;
-        padding: 0;
+        padding: 80px 0 40px; /* Aggiunge padding per navbar e per il fondo */
         display: flex;
-        align-items: center;
+        align-items: flex-start; /* Allinea il contenuto in alto */
         justify-content: center;
     }
 
@@ -1034,7 +1048,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 100vh;
+        min-height: auto; /* Rimuove l'altezza minima per permettere al contenuto di fluire */
     }
 
     .hero-content {
@@ -1055,6 +1069,7 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-top: 2rem; /* Riduco il margine che non serve più */
     }
 
     .hero-image {
@@ -1064,6 +1079,7 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-bottom: 2rem; /* Aggiunto per spaziatura */
     }
 
     .hero-text h1 {
@@ -1118,21 +1134,47 @@ body {
         padding: 0.5rem;
     }
 
+    /* Keyboard keys mobile improvements */
+    .key {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 15px 0 #102542, 0 20px 25px rgba(0,0,0,0.4);
+    }
+
+    .key:hover {
+        transform: translateY(8px);
+        box-shadow: 0 7px 0 #102542, 0 12px 20px rgba(0,0,0,0.5);
+    }
+
+    .key i, .key svg {
+        font-size: 1.8rem;
+    }
+
+    .key svg {
+        width: 28px;
+        height: 28px;
+    }
+
     /* Skills Keyboard Mobile */
     .keyboard-container {
-        transform: scale(0.75);
-        margin: 0 auto 1rem auto;
-        width: 300px;
-        height: 300px;
+        transform: scale(0.9);
+        margin: 1.5rem auto 2rem auto;
+        width: 350px;
+        height: 350px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .skills-title {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
         text-align: center;
+        font-weight: 700;
+        color: #F87060;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     /* About Section Mobile */
@@ -1212,6 +1254,15 @@ body {
     /* Projects Section Mobile */
     .projects {
         padding: 4rem 0;
+        display: block; /* Disattiva flex per permettere lo scroll */
+        min-height: auto; /* Altezza naturale su mobile */
+    }
+
+    .projects-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px; /* Mantiene un po' di spazio laterale */
     }
 
     .projects .section-header h2 {
@@ -1233,16 +1284,15 @@ body {
     .github-chart-container img {
         max-width: 100%;
         height: auto;
-        transform: scale(0.9);
     }
 
     .github-showcase {
         text-align: center;
-        margin-top: 2rem;
+        margin-top: 4rem;
     }
 
     .github-link-main {
-        padding: 1rem 2rem;
+        padding: 1rem 1.5rem;
         font-size: 1rem;
     }
 
@@ -1266,8 +1316,6 @@ body {
         font-size: 0.9rem;
     }
 
-
-
     /* Back to top button */
     .back-to-top-btn {
         width: 45px;
@@ -1282,9 +1330,14 @@ body {
 
     /* Tooltip Mobile */
     #tooltip {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
-        max-width: 200px;
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+        max-width: 250px;
+        border-radius: 8px;
+        background-color: rgba(16, 37, 66, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(248, 112, 96, 0.3);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
 
     /* Page Content Mobile */
@@ -1348,16 +1401,41 @@ body {
         font-size: 1.2rem;
     }
 
+    /* Keyboard keys small mobile */
+    .key {
+        width: 65px;
+        height: 65px;
+        font-size: 1.8rem;
+        box-shadow: 0 12px 0 #102542, 0 18px 20px rgba(0,0,0,0.4);
+    }
+
+    .key:hover {
+        transform: translateY(6px);
+        box-shadow: 0 6px 0 #102542, 0 10px 15px rgba(0,0,0,0.5);
+    }
+
+    .key i, .key svg {
+        font-size: 1.6rem;
+    }
+
+    .key svg {
+        width: 24px;
+        height: 24px;
+    }
+
     .keyboard-container {
-        transform: scale(0.65);
-        width: 250px;
-        height: 250px;
-        margin: 0 auto 0.5rem auto;
+        transform: scale(0.8);
+        width: 320px;
+        height: 320px;
+        margin: 1rem auto 1.5rem auto;
     }
 
     .skills-title {
-        font-size: 1.1rem;
-        margin-bottom: 0.8rem;
+        font-size: 1.4rem;
+        margin-bottom: 1.2rem;
+        font-weight: 700;
+        color: #F87060;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     /* About Section Small Mobile */
@@ -1477,16 +1555,41 @@ body {
         font-size: 1.1rem;
     }
 
+    /* Keyboard keys extra small mobile */
+    .key {
+        width: 60px;
+        height: 60px;
+        font-size: 1.6rem;
+        box-shadow: 0 10px 0 #102542, 0 15px 18px rgba(0,0,0,0.4);
+    }
+
+    .key:hover {
+        transform: translateY(5px);
+        box-shadow: 0 5px 0 #102542, 0 8px 12px rgba(0,0,0,0.5);
+    }
+
+    .key i, .key svg {
+        font-size: 1.4rem;
+    }
+
+    .key svg {
+        width: 22px;
+        height: 22px;
+    }
+
     .keyboard-container {
-        transform: scale(0.55);
-        width: 200px;
-        height: 200px;
-        margin: 0 auto 0.5rem auto;
+        transform: scale(0.7);
+        width: 280px;
+        height: 280px;
+        margin: 1rem auto 1rem auto;
     }
 
     .skills-title {
-        font-size: 1rem;
-        margin-bottom: 0.6rem;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        color: #F87060;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     .about-title-column h2 {
@@ -1548,14 +1651,17 @@ body {
     }
 
     .keyboard-container {
-        transform: scale(0.6);
-        width: 200px;
-        height: 200px;
+        transform: scale(0.75);
+        width: 280px;
+        height: 280px;
     }
 
     .skills-title {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        color: #F87060;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 }
 
@@ -1579,9 +1685,9 @@ body {
     }
 
     .keyboard-container {
-        transform: scale(0.5);
-        width: 180px;
-        height: 180px;
+        transform: scale(0.65);
+        width: 250px;
+        height: 250px;
     }
 }
 
