@@ -420,69 +420,75 @@ function initPlexusAnimation(canvas: HTMLCanvasElement) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let points: {x: number, y: number, vx: number, vy: number}[] = [];
+    let points: {x: number, y: number, vx: number, vy: number, impactRadius: number, impactOpacity: number}[] = [];
     let snake: {x: number, y: number}[] = [];
     let snakeTarget = 0;
-    let snakeSpeed = 2;
+    const easing = 0.05; // Fattore di easing per un movimento più fluido
 
     const setup = () => {
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
         points = [];
-        const pointCount = Math.floor(canvas.width * canvas.height / 8000);
+        const pointCount = Math.floor(canvas.width * canvas.height / 9000); // Leggermente meno punti
 
         for (let i = 0; i < pointCount; i++) {
             points.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
+                vx: (Math.random() - 0.5) * 0.4, // Velocità leggermente ridotta
+                vy: (Math.random() - 0.5) * 0.4,
+                impactRadius: 0,
+                impactOpacity: 0
             });
         }
 
-        // Inizializza il serpente
-        snake = [];
-        for (let i = 0; i < 8; i++) {
+        snake = [{ x: canvas.width / 2, y: canvas.height / 2 }];
+        for (let i = 1; i < 15; i++) { // Coda più lunga per un effetto più visibile
             snake.push({
-                x: canvas.width / 2 - i * 15,
-                y: canvas.height / 2
+                x: snake[0].x,
+                y: snake[0].y
             });
         }
-        snakeTarget = 0;
+        findNewTarget();
+    };
+
+    const findNewTarget = () => {
+        let newTarget;
+        do {
+            newTarget = Math.floor(Math.random() * points.length);
+        } while (newTarget === snakeTarget);
+        snakeTarget = newTarget;
     };
 
     const updateSnake = () => {
-        if (points.length === 0) return;
-
-        // Trova il punto target più vicino
-        if (snakeTarget >= points.length) {
-            snakeTarget = 0;
-        }
+        if (points.length === 0 || !points[snakeTarget]) return;
 
         const target = points[snakeTarget];
         const head = snake[0];
 
-        // Calcola la direzione verso il target
         const dx = target.x - head.x;
         const dy = target.y - head.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < 20) {
-            // Cambia target quando raggiunge il punto
-            snakeTarget = (snakeTarget + 1) % points.length;
+        if (distance < 10) {
+            // "Colpito" il target: crea effetto impatto
+            points[snakeTarget].impactRadius = 15;
+            points[snakeTarget].impactOpacity = 1;
+            findNewTarget();
         } else {
-            // Muovi la testa verso il target
-            const moveX = (dx / distance) * snakeSpeed;
-            const moveY = (dy / distance) * snakeSpeed;
+            // Muovi la testa con easing
+            head.x += dx * easing;
+            head.y += dy * easing;
+        }
 
-            // Aggiorna le posizioni del serpente
-            for (let i = snake.length - 1; i > 0; i--) {
-                snake[i].x = snake[i - 1].x;
-                snake[i].y = snake[i - 1].y;
-            }
-
-            snake[0].x += moveX;
-            snake[0].y += moveY;
+        // La coda segue la testa
+        for (let i = 1; i < snake.length; i++) {
+            const leader = snake[i - 1];
+            const segment = snake[i];
+            const segDx = leader.x - segment.x;
+            const segDy = leader.y - segment.y;
+            segment.x += segDx * 0.5; // La coda segue in modo più "morbido"
+            segment.y += segDy * 0.5;
         }
     };
 
@@ -490,65 +496,72 @@ function initPlexusAnimation(canvas: HTMLCanvasElement) {
         if (!ctx) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Disegna i punti
-        ctx.fillStyle = 'rgba(248, 112, 96, 1)';
+        // Disegna e aggiorna i punti e gli impatti
         points.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
 
             if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
             if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
+            
             ctx.beginPath();
-            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(248, 112, 96, 0.8)';
+            ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
             ctx.fill();
+
+            // Disegna l'effetto impatto
+            if (p.impactRadius > 0) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(248, 112, 96, ${p.impactOpacity})`;
+                ctx.lineWidth = 2;
+                ctx.arc(p.x, p.y, p.impactRadius, 0, Math.PI * 2);
+                ctx.stroke();
+
+                p.impactRadius += 0.5; // L'onda si espande
+                p.impactOpacity -= 0.02; // E svanisce
+                if (p.impactOpacity <= 0) {
+                    p.impactRadius = 0;
+                    p.impactOpacity = 0;
+                }
+            }
         });
 
-        // Disegna le connessioni tra punti
-        ctx.strokeStyle = 'rgba(248, 112, 96, 0.3)';
+        // Disegna le connessioni tra punti (plexus)
         for (let i = 0; i < points.length; i++) {
             for (let j = i + 1; j < points.length; j++) {
                 const dist = Math.hypot(points[i].x - points[j].x, points[i].y - points[j].y);
-                if (dist < 120) {
+                if (dist < 100) { // Distanza di connessione ridotta
                     ctx.beginPath();
                     ctx.moveTo(points[i].x, points[i].y);
                     ctx.lineTo(points[j].x, points[j].y);
-                    ctx.lineWidth = (1 - dist / 120) * 0.5;
+                    ctx.lineWidth = (1 - dist / 100) * 0.4;
+                    ctx.strokeStyle = 'rgba(248, 112, 96, 0.2)';
                     ctx.stroke();
                 }
             }
         }
 
-        // Aggiorna e disegna il serpente
         updateSnake();
         
-        // Disegna il corpo del serpente
-        ctx.strokeStyle = 'rgba(248, 112, 96, 0.8)';
-        ctx.lineWidth = 4;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        
-        if (snake.length > 1) {
+        // Disegna il proiettile (serpente)
+        for (let i = 0; i < snake.length; i++) {
+            const segment = snake[i];
+            const opacity = 1 - (i / snake.length) * 0.8;
+            const size = 5 - (i / snake.length) * 4; // La coda si restringe
+
             ctx.beginPath();
-            ctx.moveTo(snake[0].x, snake[0].y);
-            for (let i = 1; i < snake.length; i++) {
-                ctx.lineTo(snake[i].x, snake[i].y);
-            }
-            ctx.stroke();
+            ctx.fillStyle = `rgba(248, 112, 96, ${opacity})`;
+            ctx.arc(segment.x, segment.y, Math.max(1, size), 0, Math.PI * 2);
+            ctx.fill();
         }
 
-        // Disegna la testa del serpente
-        ctx.fillStyle = 'rgba(248, 112, 96, 1)';
-        ctx.beginPath();
-        ctx.arc(snake[0].x, snake[0].y, 6, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Evidenzia il punto target
+        // Disegna un alone attorno al punto target
         if (points[snakeTarget]) {
-            ctx.strokeStyle = 'rgba(248, 112, 96, 1)';
-            ctx.lineWidth = 2;
+            const target = points[snakeTarget];
             ctx.beginPath();
-            ctx.arc(points[snakeTarget].x, points[snakeTarget].y, 8, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(248, 112, 96, 0.5)';
+            ctx.lineWidth = 1;
+            ctx.arc(target.x, target.y, 10, 0, Math.PI * 2);
             ctx.stroke();
         }
 
