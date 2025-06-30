@@ -360,13 +360,57 @@ body.projects-page {
 }
 
 .key i, .key svg {
-  pointer-events: none;
+  font-size: 1.8rem;
+  transition: transform .2s;
 }
 
 .key svg {
-  fill: #f87060;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
+}
+
+.key .fa-html5 {
+  color: #e34f26;
+}
+
+.key .fa-css3-alt {
+  color: #1572b6;
+}
+
+.key .fa-js-square {
+  color: #f7df1e;
+}
+
+.key .fa-react {
+  color: #61dafb;
+}
+
+.key .fa-node-js {
+  color: #393;
+}
+
+.key .fa-java {
+  color: #007396;
+}
+
+.key .fa-python {
+  color: #3776ab;
+}
+
+.key .fa-brain {
+  color: #8d5eb7;
+}
+
+.key .fa-robot {
+  color: #a4c639;
+}
+
+.key .fa-git-alt {
+  color: #f05032;
+}
+
+.key svg {
+  fill: #3ecf8e;
 }
 
 .scroll-indicator {
@@ -374,7 +418,7 @@ body.projects-page {
   font-size: 1.5rem;
   animation: 2s infinite bounce;
   position: absolute;
-  bottom: 20px;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -528,9 +572,9 @@ body.projects-page {
 }
 
 .profile-photo-container {
-  justify-content: center;
-  margin: 2rem 0;
-  display: flex;
+  will-change: transform;
+  margin-top: 2rem;
+  position: relative;
 }
 
 .profile-photo {
@@ -587,6 +631,8 @@ body.projects-page {
 }
 
 .timeline-container {
+  will-change: transform;
+  margin-top: 3rem;
   padding: 2rem 0;
   position: relative;
 }

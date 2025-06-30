@@ -377,18 +377,31 @@ body.projects-page {
 }
 
 .key i, .key svg {
-    pointer-events: none;
+    font-size: 1.8rem;
+    transition: transform 0.2s;
 }
 
 .key svg {
-    width: 32px;
-    height: 32px;
-    fill: #F87060;
+    width: 28px;
+    height: 28px;
 }
+
+/* Skill Icon Colors */
+.key .fa-html5 { color: #E34F26; }
+.key .fa-css3-alt { color: #1572B6; }
+.key .fa-js-square { color: #F7DF1E; }
+.key .fa-react { color: #61DAFB; }
+.key .fa-node-js { color: #339933; }
+.key .fa-java { color: #007396; }
+.key .fa-python { color: #3776AB; }
+.key .fa-brain { color: #8D5EB7; }
+.key .fa-robot { color: #A4C639; }
+.key .fa-git-alt { color: #F05032; }
+.key svg { fill: #3ECF8E; }
 
 .scroll-indicator {
     position: absolute;
-    bottom: 20px;
+    bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
     color: rgba(237, 242, 244, 0.5);
@@ -551,9 +564,9 @@ body.projects-page {
 }
 
 .profile-photo-container {
-    margin: 2rem 0;
-    display: flex;
-    justify-content: center;
+    margin-top: 2rem;
+    position: relative;
+    will-change: transform;
 }
 
 .profile-photo {
@@ -612,6 +625,8 @@ body.projects-page {
 .timeline-container {
     position: relative;
     padding: 2rem 0;
+    margin-top: 3rem;
+    will-change: transform;
 }
 
 .timeline::before {

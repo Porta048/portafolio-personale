@@ -1560,6 +1560,22 @@ function initAboutBackground() {
     });
     intersectionObserver.observe(aboutSection);
 }
+function initParallaxEffect() {
+    const parallaxElements = document.querySelectorAll('.profile-photo-container, .timeline-container');
+    if (parallaxElements.length === 0) return;
+    const handleScroll = ()=>{
+        const scrollY = window.scrollY;
+        parallaxElements.forEach((el)=>{
+            const element = el;
+            const speed = parseFloat(element.dataset.parallaxSpeed || '0.1');
+            const offset = scrollY * speed;
+            element.style.transform = `translateY(${offset}px)`;
+        });
+    };
+    window.addEventListener('scroll', handleScroll, {
+        passive: true
+    });
+}
 // Main initialization
 document.addEventListener('DOMContentLoaded', ()=>{
     // Funzioni comuni a tutte le pagine
@@ -1580,6 +1596,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     if (interactiveCanvas) initInteractiveParticles(interactiveCanvas);
     if (document.querySelector('.timeline')) initTimelineAnimation();
     if (document.querySelector('.about')) initAboutBackground();
+    initParallaxEffect(); // Inizializza l'effetto parallasse
     // Calculate and set age for the stat counter
     const ageStatElement = document.getElementById('age-stat');
     if (ageStatElement) {
