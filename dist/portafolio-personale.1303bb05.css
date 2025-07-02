@@ -20,17 +20,13 @@ html {
 body {
   color: #f9fafb;
   background-color: #0c1c33;
-  background-image: radial-gradient(circle, #0b1a2ff2 0%, #0c1c33 70%), linear-gradient(0deg, #ffffff08 1px, #0000 1px), linear-gradient(90deg, #ffffff08 1px, #0000 1px);
-  background-size: 100% 100%, 40px 40px, 40px 40px;
   font-family: Poppins, sans-serif;
   line-height: 1.6;
-  animation: 30s linear infinite moveGrid;
   overflow-x: hidden;
 }
 
 body.projects-page {
   background-color: #0c1c33;
-  background-image: none;
 }
 
 .container {
@@ -128,12 +124,11 @@ body.projects-page {
 
 .hero {
   color: #fff;
-  background: #0c1c33;
+  background: none;
   align-items: center;
   min-height: 100vh;
   display: flex;
   position: relative;
-  overflow: hidden;
 }
 
 #matrix-canvas {
@@ -318,6 +313,18 @@ body.projects-page {
   }
 }
 
+@keyframes fall-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .keyboard-row {
   justify-content: center;
   gap: 10px;
@@ -330,6 +337,7 @@ body.projects-page {
   width: 75px;
   height: 75px;
   transform-style: preserve-3d;
+  opacity: 0;
   background-image: linear-gradient(#2a4a6f, #1e3a5f);
   border: 1px solid #3a5b8a;
   border-top-color: #4a6b9a;
@@ -338,6 +346,7 @@ body.projects-page {
   align-items: center;
   font-size: 2.2rem;
   transition: transform .1s ease-out, box-shadow .1s ease-out;
+  animation: .5s ease-out forwards fall-in;
   display: flex;
   box-shadow: 0 20px #102542, 0 26px 35px #00000080;
 }
@@ -821,7 +830,6 @@ body.projects-page {
 .footer {
   text-align: center;
   background-color: #0000;
-  border-top: 1px solid #1b3a5f;
   padding: 3rem 0;
   position: relative;
 }
@@ -1789,5 +1797,15 @@ body.projects-page {
   .btn-new {
     border: 2px solid #f87060;
   }
+}
+
+#neural-network-canvas, #data-flow-canvas {
+  z-index: -1;
+  opacity: .5;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 /*# sourceMappingURL=portafolio-personale.1303bb05.css.map */

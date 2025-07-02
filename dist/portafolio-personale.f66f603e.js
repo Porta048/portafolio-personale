@@ -1576,14 +1576,139 @@ function initParallaxEffect() {
         passive: true
     });
 }
+/**
+ * Initializes a neural network animation on a canvas.
+ */ function initNeuralNetworkBackground() {
+    const canvas = document.getElementById('neural-network-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const mouse = {
+        x: 0,
+        y: 0
+    };
+    window.addEventListener('mousemove', (e)=>{
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+    let nodes;
+    const resizeCanvas = ()=>{
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        nodes = [];
+        const nodeCount = window.innerWidth < 768 ? 40 : 80;
+        for(let i = 0; i < nodeCount; i++)nodes.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            baseRadius: Math.random() * 1.5 + 1,
+            pulseAngle: Math.random() * Math.PI
+        });
+    };
+    const draw = ()=>{
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        nodes.forEach((node)=>{
+            node.x += node.vx;
+            node.y += node.vy;
+            if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+            if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+            node.pulseAngle += 0.02;
+            const pulseFactor = (Math.sin(node.pulseAngle) + 1) / 2;
+            const currentRadius = node.baseRadius + pulseFactor * 1.5;
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, currentRadius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${0.6 + pulseFactor * 0.4})`;
+            ctx.fill();
+        });
+        for(let i = 0; i < nodes.length; i++)for(let j = i + 1; j < nodes.length; j++){
+            const dist = Math.sqrt(Math.pow(nodes[i].x - nodes[j].x, 2) + Math.pow(nodes[i].y - nodes[j].y, 2));
+            const distToMouse = Math.min(Math.sqrt(Math.pow(nodes[i].x - mouse.x, 2) + Math.pow(nodes[i].y - mouse.y, 2)), Math.sqrt(Math.pow(nodes[j].x - mouse.x, 2) + Math.pow(nodes[j].y - mouse.y, 2)));
+            if (dist < 150) {
+                let opacity = (1 - dist / 150) * 0.5;
+                if (distToMouse < 100) opacity = Math.min(1, opacity + (1 - distToMouse / 100) * 0.8);
+                ctx.beginPath();
+                ctx.moveTo(nodes[i].x, nodes[i].y);
+                ctx.lineTo(nodes[j].x, nodes[j].y);
+                ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+            }
+        }
+    };
+    const animate = ()=>{
+        draw();
+        requestAnimationFrame(animate);
+    };
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    animate();
+}
+/**
+ * Initializes a data flow animation on a canvas.
+ */ function initDataFlowBackground() {
+    const canvas = document.getElementById('data-flow-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    let particles;
+    const resizeCanvas = ()=>{
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles = [];
+        const particleCount = 300;
+        for(let i = 0; i < particleCount; i++)particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            speed: Math.random() * 1 + 0.2,
+            size: Math.random() * 1.5 + 1,
+            length: Math.random() * 15 + 5,
+            opacity: Math.random() * 0.4 + 0.1
+        });
+    };
+    const draw = ()=>{
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p)=>{
+            p.y -= p.speed;
+            if (p.y < -p.length) {
+                p.y = canvas.height;
+                p.x = Math.random() * canvas.width;
+            }
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p.x, p.y - p.length);
+            ctx.strokeStyle = `rgba(255, 255, 255, ${p.opacity})`;
+            ctx.lineWidth = p.size;
+            ctx.stroke();
+        });
+    };
+    const animate = ()=>{
+        draw();
+        requestAnimationFrame(animate);
+    };
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    animate();
+}
 // Main initialization
 document.addEventListener('DOMContentLoaded', ()=>{
-    // Funzioni comuni a tutte le pagine
+    // Staggered fall-in animation for keyboard keys
+    const keys = document.querySelectorAll('.key');
+    keys.forEach((key, index)=>{
+        key.style.animationDelay = `${index * 0.05}s`;
+    });
+    // Page-specific initializations
+    if (document.getElementById('neural-network-canvas')) initNeuralNetworkBackground();
+    if (document.getElementById('data-flow-canvas')) initDataFlowBackground();
+    initTooltips();
     initHamburgerMenu();
+    initScrollToTop();
+    initTimelineAnimation();
+    // Funzioni comuni a tutte le pagine
     initNavbarActiveLink();
     initNavbarScroll();
-    initTooltips();
-    initScrollToTop();
     // Funzioni specifiche per pagina
     if (document.getElementById('matrix-canvas')) initSubtleBackground();
     if (document.querySelector('.keyboard')) initKeyboardAnimation();

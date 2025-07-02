@@ -26,20 +26,13 @@ html {
 
 body {
     font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
     color: #f9fafb;
-    background-color: #0c1c33; /* Fallback color */
-    background-image:
-        radial-gradient(circle at center, rgba(11, 26, 47, 0.95) 0%, #0c1c33 70%),
-        linear-gradient(0deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 100% 100%, 40px 40px, 40px 40px;
-    animation: moveGrid 30s linear infinite;
+    background-color: #0c1c33; /* Solid background color */
+    line-height: 1.6;
     overflow-x: hidden;
 }
 
 body.projects-page {
-    background-image: none; /* Rimuove lo sfondo a griglia solo per questa pagina */
     background-color: #0c1c33;
 }
 
@@ -139,13 +132,12 @@ body.projects-page {
 
 /* Hero Section */
 .hero {
+    position: relative; /* Ensure hero content is above the canvas */
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: #0c1c33; /* Sfondo scuro per il canvas */
+    background: transparent; /* Make section transparent to reveal canvas */
     color: white;
-    position: relative;
-    overflow: hidden;
 }
 
 #matrix-canvas {
@@ -333,6 +325,17 @@ body.projects-page {
     }
 }
 
+@keyframes fall-in {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .keyboard-row {
     display: flex;
     justify-content: center;
@@ -357,6 +360,8 @@ body.projects-page {
     cursor: pointer;
     transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
     transform-style: preserve-3d;
+    opacity: 0; /* Start transparent for the animation */
+    animation: fall-in 0.5s ease-out forwards;
 }
 
 .key:hover {
@@ -474,7 +479,7 @@ body.projects-page {
     padding: 12rem 0;
     position: relative;
     overflow: hidden;
-    background-color: transparent;
+    background-color: transparent; /* Make section transparent to reveal canvas */
 }
 
 .about::before {
@@ -809,7 +814,6 @@ body.projects-page {
     background-color: transparent;
     padding: 3rem 0;
     text-align: center;
-    border-top: 1px solid #1b3a5f;
     position: relative;
 }
 
@@ -1849,4 +1853,14 @@ body.projects-page {
     .btn-new {
         border: 2px solid #F87060;
     }
+}
+
+#neural-network-canvas, #data-flow-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.5; /* Subtle background effect */
 }
