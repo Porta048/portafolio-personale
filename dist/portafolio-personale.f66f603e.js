@@ -1438,16 +1438,25 @@ function initStatsCounters() {
 }
 function initTimelineAnimation() {
     const timelineItems = document.querySelectorAll('.timeline-item');
-    const timelineObserver = new IntersectionObserver((entries)=>{
+    const stats = document.querySelectorAll('.stat');
+    const profilePhoto = document.querySelector('.profile-photo');
+    const observer = new IntersectionObserver((entries)=>{
         entries.forEach((entry)=>{
-            if (entry.isIntersecting) entry.target.classList.add('animate');
+            if (entry.isIntersecting) entry.target.classList.add('visible');
         });
     }, {
         threshold: 0.1
     });
+    // Osserva gli elementi della timeline
     timelineItems.forEach((item)=>{
-        timelineObserver.observe(item);
+        observer.observe(item);
     });
+    // Osserva le statistiche
+    stats.forEach((stat, index)=>{
+        observer.observe(stat);
+    });
+    // Osserva la foto del profilo
+    if (profilePhoto) observer.observe(profilePhoto);
 }
 function initAboutBackground() {
     const aboutSection = document.querySelector('.about');
