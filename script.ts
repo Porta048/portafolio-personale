@@ -1,5 +1,7 @@
 import { computePosition, offset, shift, flip, arrow } from '@floating-ui/dom';
 
+
+
 // DOM Elements
 const hamburger = document.querySelector<HTMLDivElement>('.hamburger');
 const navMenu = document.querySelector<HTMLDivElement>('.nav-menu');
@@ -959,8 +961,6 @@ function initStatsCounters() {
 
 function initTimelineAnimation() {
     const timelineItems = document.querySelectorAll('.timeline-item');
-    const stats = document.querySelectorAll('.stat');
-    const profilePhoto = document.querySelector('.profile-photo');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -974,187 +974,13 @@ function initTimelineAnimation() {
     timelineItems.forEach(item => {
         observer.observe(item);
     });
-
-    // Osserva le statistiche
-    stats.forEach((stat, index) => {
-        observer.observe(stat);
-    });
-
-    // Osserva la foto del profilo
-    if (profilePhoto) {
-        observer.observe(profilePhoto);
-    }
 }
 
-function initAboutBackground() {
-    const aboutSection = document.querySelector('.about') as HTMLElement;
-    if (!aboutSection) return;
 
-    // Crea il canvas per le forme geometriche animate
-    const canvas = document.createElement('canvas');
-    canvas.style.position = 'absolute';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    canvas.style.zIndex = '1';
-    canvas.style.pointerEvents = 'none';
-    canvas.style.opacity = '0.6';
-    
-    aboutSection.appendChild(canvas);
-    
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
 
-    let width = aboutSection.offsetWidth;
-    let height = aboutSection.offsetHeight;
-    canvas.width = width;
-    canvas.height = height;
 
-    interface FloatingShape {
-        x: number;
-        y: number;
-        size: number;
-        speedX: number;
-        speedY: number;
-        rotation: number;
-        rotationSpeed: number;
-        type: 'circle' | 'triangle' | 'square';
-        opacity: number;
-    }
 
-    const shapes: FloatingShape[] = [];
-    const shapeCount = 8;
 
-    // Inizializza le forme
-    for (let i = 0; i < shapeCount; i++) {
-        shapes.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            size: Math.random() * 40 + 20,
-            speedX: (Math.random() - 0.5) * 0.3,
-            speedY: (Math.random() - 0.5) * 0.3,
-            rotation: Math.random() * Math.PI * 2,
-            rotationSpeed: (Math.random() - 0.5) * 0.01,
-            type: ['circle', 'triangle', 'square'][Math.floor(Math.random() * 3)] as 'circle' | 'triangle' | 'square',
-            opacity: Math.random() * 0.3 + 0.1
-        });
-    }
-
-    function drawShape(shape: FloatingShape) {
-        if (!ctx) return;
-        
-        ctx.save();
-        ctx.translate(shape.x, shape.y);
-        ctx.rotate(shape.rotation);
-        ctx.globalAlpha = shape.opacity;
-        
-        const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, shape.size);
-        gradient.addColorStop(0, 'rgba(248, 112, 96, 0.3)');
-        gradient.addColorStop(1, 'rgba(248, 112, 96, 0)');
-        
-        ctx.fillStyle = gradient;
-        ctx.strokeStyle = 'rgba(248, 112, 96, 0.2)';
-        ctx.lineWidth = 1;
-
-        switch (shape.type) {
-            case 'circle':
-                ctx.beginPath();
-                ctx.arc(0, 0, shape.size / 2, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.stroke();
-                break;
-            
-            case 'triangle':
-                ctx.beginPath();
-                ctx.moveTo(0, -shape.size / 2);
-                ctx.lineTo(-shape.size / 2, shape.size / 2);
-                ctx.lineTo(shape.size / 2, shape.size / 2);
-                ctx.closePath();
-                ctx.fill();
-                ctx.stroke();
-                break;
-            
-            case 'square':
-                ctx.fillRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size);
-                ctx.strokeRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size);
-                break;
-        }
-        
-        ctx.restore();
-    }
-
-    function updateShapes() {
-        shapes.forEach(shape => {
-            shape.x += shape.speedX;
-            shape.y += shape.speedY;
-            shape.rotation += shape.rotationSpeed;
-
-            // Rimbalzo sui bordi
-            if (shape.x < -shape.size || shape.x > width + shape.size) {
-                shape.speedX *= -1;
-            }
-            if (shape.y < -shape.size || shape.y > height + shape.size) {
-                shape.speedY *= -1;
-            }
-
-            // Mantieni le forme all'interno dell'area
-            shape.x = Math.max(-shape.size / 2, Math.min(width + shape.size / 2, shape.x));
-            shape.y = Math.max(-shape.size / 2, Math.min(height + shape.size / 2, shape.y));
-        });
-    }
-
-    function animate() {
-        if (!ctx) return;
-        ctx.clearRect(0, 0, width, height);
-        
-        updateShapes();
-        shapes.forEach(drawShape);
-        
-        requestAnimationFrame(animate);
-    }
-
-    // Gestisci il ridimensionamento
-    const resizeObserver = new ResizeObserver(() => {
-        width = aboutSection.offsetWidth;
-        height = aboutSection.offsetHeight;
-        canvas.width = width;
-        canvas.height = height;
-    });
-    
-    resizeObserver.observe(aboutSection);
-    
-    // Avvia l'animazione solo quando la sezione è visibile
-    const intersectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animate();
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    intersectionObserver.observe(aboutSection);
-}
-
-function initParallaxEffect() {
-    const parallaxElements = document.querySelectorAll('.profile-photo-container, .timeline-container');
-    
-    if (parallaxElements.length === 0) return;
-
-    const handleScroll = () => {
-        const scrollY = window.scrollY;
-        
-        parallaxElements.forEach(el => {
-            const element = el as HTMLElement;
-            const speed = parseFloat(element.dataset.parallaxSpeed || '0.1');
-            const offset = scrollY * speed;
-
-            element.style.transform = `translateY(${offset}px)`;
-        });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-}
 
 /**
  * Initializes a neural network animation on a canvas.
@@ -1307,6 +1133,199 @@ function initDataFlowBackground() {
     animate();
 }
 
+
+
+// Finestra in legno modal
+function initWoodenWindowModal() {
+    const aboutTrigger = document.getElementById('about-modal-trigger');
+    const modal = document.getElementById('wooden-window-modal');
+    const closeButtons = document.querySelectorAll('#close-wooden-window, #close-window-btn');
+
+    if (!aboutTrigger || !modal) return;
+
+    // Apri modal quando si clicca su About
+    aboutTrigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+    });
+
+    // Chiudi modal con i pulsanti di chiusura
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            closeModal();
+        });
+    });
+
+    // Chiudi modal cliccando fuori dalla finestra
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Chiudi modal con tasto ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    function openModal() {
+        if (!modal) return;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Sound effect (opzionale)
+        playWindowOpenSound();
+        
+        // Anima i contatori delle statistiche
+        setTimeout(() => {
+            animateModalStats();
+        }, 500);
+        
+        // Prevent scrolling on background only
+        document.addEventListener('wheel', preventBackgroundScroll, { passive: false });
+        document.addEventListener('touchmove', preventBackgroundScroll, { passive: false });
+    }
+
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        
+        // Sound effect (opzionale)
+        playWindowCloseSound();
+        
+        // Reset contatori per la prossima apertura
+        resetModalStats();
+        
+        // Re-enable scrolling
+        document.removeEventListener('wheel', preventBackgroundScroll);
+        document.removeEventListener('touchmove', preventBackgroundScroll);
+    }
+
+    function preventBackgroundScroll(e: Event) {
+        const target = e.target as Element;
+        const modalContent = modal?.querySelector('.wooden-window');
+        
+        // Allow scrolling if the event target is inside the modal content
+        if (modalContent && modalContent.contains(target)) {
+            return; // Don't prevent scrolling inside modal
+        }
+        
+        // Prevent scrolling on background
+        e.preventDefault();
+    }
+
+    function animateModalStats() {
+        const statNumbers = modal?.querySelectorAll<HTMLElement>('.stat h4');
+        statNumbers?.forEach(stat => {
+            const target = parseInt(stat.dataset.target || '0', 10);
+            const suffix = stat.dataset.suffix || '';
+            animateCounter(stat, target, 2000, suffix);
+        });
+    }
+
+    function resetModalStats() {
+        const statNumbers = modal?.querySelectorAll<HTMLElement>('.stat h4');
+        statNumbers?.forEach(stat => {
+            stat.textContent = '0';
+        });
+    }
+
+    // Effetti sonori opzionali (solo se disponibili)
+    function playWindowOpenSound() {
+        try {
+            // Crea un suono di apertura finestra molto sottile
+            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.3);
+            
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.1);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.3);
+        } catch (e) {
+            // Sound not available, continue silently
+        }
+    }
+
+    function playWindowCloseSound() {
+        try {
+            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.2);
+            
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.08, audioContext.currentTime + 0.05);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.2);
+        } catch (e) {
+            // Sound not available, continue silently
+        }
+    }
+
+    // Animazione di particelle di legno (opzionale)
+    function createWoodParticles() {
+        const windowElement = document.querySelector('.wooden-window');
+        if (!windowElement) return;
+
+        for (let i = 0; i < 5; i++) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: #D2691E;
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 10001;
+                opacity: 0.6;
+            `;
+            
+            const rect = windowElement.getBoundingClientRect();
+            particle.style.left = `${rect.left + Math.random() * rect.width}px`;
+            particle.style.top = `${rect.top + Math.random() * rect.height}px`;
+            
+            document.body.appendChild(particle);
+            
+            // Animate particle
+            const animation = particle.animate([
+                { transform: 'translateY(0px) scale(1)', opacity: 0.6 },
+                { transform: 'translateY(-50px) scale(0)', opacity: 0 }
+            ], {
+                duration: 1000,
+                easing: 'ease-out'
+            });
+            
+            animation.onfinish = () => {
+                particle.remove();
+            };
+        }
+    }
+
+    // Trigger particles when window opens
+    aboutTrigger.addEventListener('click', () => {
+        setTimeout(createWoodParticles, 300);
+    });
+}
+
 // Main initialization
 document.addEventListener('DOMContentLoaded', () => {
     // Staggered fall-in animation for keyboard keys
@@ -1314,6 +1333,8 @@ document.addEventListener('DOMContentLoaded', () => {
     keys.forEach((key, index) => {
         (key as HTMLElement).style.animationDelay = `${index * 0.05}s`;
     });
+
+
 
     // Page-specific initializations
     if (document.getElementById('neural-network-canvas')) {
@@ -1359,10 +1380,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.timeline')) {
         initTimelineAnimation();
     }
-    if (document.querySelector('.about')) {
-        initAboutBackground();
-    }
-    initParallaxEffect(); // Inizializza l'effetto parallasse
+
+    initWoodenWindowModal(); // Inizializza il modal della finestra in legno
 
     // Calculate and set age for the stat counter
     const ageStatElement = document.getElementById('age-stat');

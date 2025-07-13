@@ -17,7 +17,7 @@
             </div>
             <div class="nav-menu">
                 <a href="index.html" class="nav-link active">Home</a>
-                <a href="about.html" class="nav-link">About</a>
+                <a href="#" class="nav-link" id="about-modal-trigger">About</a>
                 <a href="projects.html" class="nav-link">Projects</a>
             </div>
             <div class="hamburger">
@@ -35,7 +35,7 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Hi, I'm <span class="highlight">Alessandro di Martino</span></h1>
-                    <h2>Full Stack Developer & AI Specialist • Born in 2005</h2>
+                    <h2>Full Stack Developer & Machine Learning e Deep Learning • Born in 2005</h2>
                     <p class="hero-description">
                         Passionate developer with experience in modern technologies.
                         I create innovative and high-performance solutions for web and artificial intelligence.
@@ -116,6 +116,89 @@
     <a href="#home" class="back-to-top-btn" id="scrollToTopBtn" title="Back to Top">
         <i class="fas fa-arrow-up"></i>
     </a>
+
+    <!-- Finestra in legno modal -->
+    <div id="wooden-window-modal" class="wooden-modal">
+        <div class="wooden-window">
+            <div class="window-frame">
+                <div class="window-header">
+                    <div class="window-title">About Alessandro</div>
+                    <button class="window-close" id="close-wooden-window">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="window-content">
+                    <div class="window-glass">
+                        <div class="about-content">
+                            <div class="photo-frame">
+                                <img src="io.png" alt="Alessandro di Martino" class="profile-image">
+                            </div>
+                            <div class="window-info">
+                                <h3>Alessandro di Martino</h3>
+                                <div class="stats">
+                                    <div class="stat">
+                                        <h4 id="age-stat" data-target="19" data-suffix="">0</h4>
+                                        <span>Years Old</span>
+                                    </div>
+                                    <div class="stat">
+                                        <h4 data-target="15" data-suffix="+">0</h4>
+                                        <span>Personal Projects</span>
+                                    </div>
+                                    <div class="stat">
+                                        <h4 data-target="30" data-suffix="+">0</h4>
+                                        <span><a href="https://github.com/Porta048?tab=repositories" target="_blank" rel="noopener noreferrer">Public Repositories</a></span>
+                                    </div>
+                                </div>
+                                <div class="timeline-container">
+                                    <div class="timeline">
+                                        <div class="timeline-item">
+                                            <div class="timeline-icon">
+                                                <i class="fas fa-graduation-cap"></i>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <h3>Computer Science Diploma</h3>
+                                                <p>Obtained a computer science technician diploma, laying the foundation for my career in the technology world.</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-icon">
+                                                <i class="fas fa-certificate"></i>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <h3>EPICODE Certifications</h3>
+                                                <p>Obtained professional certificates that have solidified and expanded my development skills.</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-icon">
+                                                <i class="fas fa-brain"></i>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <h3>AI Passion</h3>
+                                                <p>Started a self-taught journey, deepening the study of Artificial Intelligence and Machine Learning.</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-icon">
+                                                <i class="fas fa-code"></i>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <h3>Personal Projects</h3>
+                                                <p>Developed numerous personal projects, applying acquired knowledge and experimenting with new technologies.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="window-buttons">
+                                    <button class="wood-btn secondary" id="close-window-btn">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script type="module" src="script.ts"></script>
 </body>
