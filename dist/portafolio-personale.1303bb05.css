@@ -1965,7 +1965,6 @@ body.projects-page {
   max-width: 90vw;
   max-height: 90vh;
   padding: 30px;
-  transition: all .4s cubic-bezier(.175, .885, .32, 1.275);
   position: relative;
   overflow-y: auto;
   transform: scale(.8)translateY(50px);
@@ -2026,14 +2025,12 @@ body.projects-page {
   align-items: center;
   width: 40px;
   height: 40px;
-  transition: all .3s;
   display: flex;
   box-shadow: 0 4px 15px #f870604d;
 }
 
 .window-close:hover {
   background: linear-gradient(135deg, #e5654d 0%, #d4513a 100%);
-  transform: scale(1.1);
   box-shadow: 0 6px 20px #f8706066;
 }
 

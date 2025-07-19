@@ -1,4 +1,5 @@
 import { computePosition, offset, shift, flip, arrow } from '@floating-ui/dom';
+import { gsap } from 'gsap';
 
 
 
@@ -1135,13 +1136,33 @@ function initDataFlowBackground() {
 
 
 
-// Finestra in legno modal
+// Finestra in legno modal con animazioni GSAP
 function initWoodenWindowModal() {
     const aboutTrigger = document.getElementById('about-modal-trigger');
     const modal = document.getElementById('wooden-window-modal');
     const closeButtons = document.querySelectorAll('#close-wooden-window, #close-window-btn');
+    const modalContent = modal?.querySelector<HTMLDivElement>('.wooden-window');
+    const photoFrame = modal?.querySelector<HTMLDivElement>('.photo-frame');
+    const windowInfo = modal?.querySelector<HTMLDivElement>('.window-info');
+    const stats = modal?.querySelectorAll<HTMLDivElement>('.stat');
+    const timelineItems = modal?.querySelectorAll<HTMLDivElement>('.timeline-item');
+    const windowButtons = modal?.querySelector<HTMLDivElement>('.window-buttons');
 
-    if (!aboutTrigger || !modal) return;
+    if (!aboutTrigger || !modal || !modalContent) return;
+
+    // Initialize modal state with GSAP
+    gsap.set(modal, { display: 'none', opacity: 0 });
+    gsap.set(modalContent, { 
+        scale: 0.8, 
+        opacity: 0, 
+        y: 50,
+        rotationX: 15,
+        transformOrigin: 'center center'
+    });
+    gsap.set([photoFrame, windowInfo, ...Array.from(stats || []), ...Array.from(timelineItems || []), windowButtons], { 
+        opacity: 0, 
+        y: 30 
+    });
 
     // Apri modal quando si clicca su About
     aboutTrigger.addEventListener('click', (e) => {
@@ -1171,17 +1192,96 @@ function initWoodenWindowModal() {
     });
 
     function openModal() {
-        if (!modal) return;
-        modal.classList.add('active');
+        if (!modal || !modalContent) return;
+        
+        // Prevent body scroll
         document.body.style.overflow = 'hidden';
         
-        // Sound effect (opzionale)
+        // Show modal backdrop with fade
+        gsap.set(modal, { display: 'flex' });
+        gsap.to(modal, { 
+            opacity: 1, 
+            duration: 0.4, 
+            ease: 'power2.out' 
+        });
+
+        // Animate modal window with 3D effect
+        gsap.to(modalContent, {
+            scale: 1,
+            opacity: 1,
+            y: 0,
+            rotationX: 0,
+            duration: 0.7,
+            ease: 'back.out(1.7)',
+            delay: 0.1,
+            onComplete: () => {
+                modal.classList.add('active');
+            }
+        });
+
+        // Create staggered animation for content elements
+        const tl = gsap.timeline({ delay: 0.5 });
+        
+        // Photo frame with bounce effect
+        if (photoFrame) {
+            tl.to(photoFrame, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'bounce.out'
+            });
+        }
+        
+        // Window info with slide effect
+        if (windowInfo) {
+            tl.to(windowInfo, {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: 'power2.out'
+            }, '-=0.4');
+        }
+        
+        // Stats with stagger and scale effect
+        if (stats && stats.length > 0) {
+            tl.to(stats, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.5,
+                ease: 'back.out(1.2)',
+                stagger: 0.1
+            }, '-=0.3');
+        }
+        
+        // Timeline items with slide effect
+        if (timelineItems && timelineItems.length > 0) {
+            tl.to(timelineItems, {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: 'power2.out',
+                stagger: 0.08
+            }, '-=0.4');
+        }
+        
+        // Buttons with bounce effect
+        if (windowButtons) {
+            tl.to(windowButtons, {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: 'bounce.out'
+            }, '-=0.3');
+        }
+
+        // Sound effect
         playWindowOpenSound();
         
         // Anima i contatori delle statistiche
         setTimeout(() => {
             animateModalStats();
-        }, 500);
+        }, 1200);
         
         // Prevent scrolling on background only
         document.addEventListener('wheel', preventBackgroundScroll, { passive: false });
@@ -1189,16 +1289,44 @@ function initWoodenWindowModal() {
     }
 
     function closeModal() {
-        if (!modal) return;
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
+        if (!modal || !modalContent) return;
         
-        // Sound effect (opzionale)
-        playWindowCloseSound();
+        // Create reverse animation timeline
+        const tl = gsap.timeline();
         
-        // Reset contatori per la prossima apertura
-        resetModalStats();
-        
+        // Animate content elements out with stagger
+        const elements = [photoFrame, windowInfo, ...Array.from(stats || []), ...Array.from(timelineItems || []), windowButtons].filter(Boolean);
+        tl.to(elements, {
+            opacity: 0,
+            y: -30,
+            scale: 0.95,
+            duration: 0.3,
+            ease: 'power2.in',
+            stagger: 0.03
+        })
+        // Animate modal window out with 3D effect
+        .to(modalContent, {
+            scale: 0.8,
+            opacity: 0,
+            y: -50,
+            rotationX: -15,
+            duration: 0.5,
+            ease: 'back.in(1.7)'
+        }, '-=0.2')
+        // Fade out backdrop
+        .to(modal, {
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.in'
+        }, '-=0.3')
+        .set(modal, { display: 'none' })
+        .call(() => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            resetModalStats();
+            playWindowCloseSound();
+        });
+
         // Re-enable scrolling
         document.removeEventListener('wheel', preventBackgroundScroll);
         document.removeEventListener('touchmove', preventBackgroundScroll);
@@ -1219,10 +1347,24 @@ function initWoodenWindowModal() {
 
     function animateModalStats() {
         const statNumbers = modal?.querySelectorAll<HTMLElement>('.stat h4');
-        statNumbers?.forEach(stat => {
+        statNumbers?.forEach((stat, index) => {
             const target = parseInt(stat.dataset.target || '0', 10);
             const suffix = stat.dataset.suffix || '';
-            animateCounter(stat, target, 2000, suffix);
+            
+            // Animate with GSAP for smoother counting
+            gsap.fromTo(stat, 
+                { textContent: '0' },
+                {
+                    duration: 2,
+                    delay: index * 0.2,
+                    ease: 'power2.out',
+                    onUpdate: function() {
+                        const progress = this.progress();
+                        const currentValue = Math.floor(target * progress);
+                        stat.textContent = currentValue + suffix;
+                    }
+                }
+            );
         });
     }
 
@@ -1281,48 +1423,182 @@ function initWoodenWindowModal() {
         }
     }
 
-    // Animazione di particelle di legno (opzionale)
+    // Animazione di particelle di legno con GSAP
     function createWoodParticles() {
         const windowElement = document.querySelector('.wooden-window');
         if (!windowElement) return;
 
-        for (let i = 0; i < 5; i++) {
+        const rect = windowElement.getBoundingClientRect();
+        const particleCount = 8;
+
+        for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.style.cssText = `
-                position: absolute;
-                width: 4px;
-                height: 4px;
-                background: #D2691E;
+                position: fixed;
+                width: 6px;
+                height: 6px;
+                background: linear-gradient(45deg, #D2691E, #CD853F);
                 border-radius: 50%;
                 pointer-events: none;
                 z-index: 10001;
-                opacity: 0.6;
+                box-shadow: 0 0 10px rgba(210, 105, 30, 0.6);
             `;
             
-            const rect = windowElement.getBoundingClientRect();
-            particle.style.left = `${rect.left + Math.random() * rect.width}px`;
-            particle.style.top = `${rect.top + Math.random() * rect.height}px`;
+            // Random starting position around the window
+            const startX = rect.left + rect.width / 2 + (Math.random() - 0.5) * 100;
+            const startY = rect.top + rect.height / 2 + (Math.random() - 0.5) * 100;
+            
+            particle.style.left = `${startX}px`;
+            particle.style.top = `${startY}px`;
             
             document.body.appendChild(particle);
             
-            // Animate particle
-            const animation = particle.animate([
-                { transform: 'translateY(0px) scale(1)', opacity: 0.6 },
-                { transform: 'translateY(-50px) scale(0)', opacity: 0 }
-            ], {
-                duration: 1000,
-                easing: 'ease-out'
-            });
-            
-            animation.onfinish = () => {
-                particle.remove();
-            };
+            // GSAP animation for particles
+            gsap.fromTo(particle, 
+                {
+                    scale: 0,
+                    opacity: 0,
+                    x: 0,
+                    y: 0
+                },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    x: (Math.random() - 0.5) * 200,
+                    y: (Math.random() - 0.5) * 200 - 100,
+                    duration: 1.5,
+                    delay: i * 0.1,
+                    ease: 'power2.out',
+                    onComplete: () => {
+                        gsap.to(particle, {
+                            scale: 0,
+                            opacity: 0,
+                            duration: 0.5,
+                            ease: 'power2.in',
+                            onComplete: () => particle.remove()
+                        });
+                    }
+                }
+            );
         }
     }
 
     // Trigger particles when window opens
     aboutTrigger.addEventListener('click', () => {
         setTimeout(createWoodParticles, 300);
+    });
+
+    // Add subtle pulse animation to About button when modal is closed
+    function addAboutButtonPulse() {
+        if (aboutTrigger) {
+            gsap.to(aboutTrigger, {
+                scale: 1.02,
+                duration: 2,
+                ease: 'power2.inOut',
+                yoyo: true,
+                repeat: -1
+            });
+        }
+    }
+
+    // Start pulse animation after page load
+    setTimeout(addAboutButtonPulse, 3000);
+
+    // Add GSAP hover animations for modal buttons
+    const woodButtons = modal?.querySelectorAll<HTMLButtonElement>('.wood-btn');
+    woodButtons?.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            gsap.to(button, {
+                scale: 1.05,
+                duration: 0.2,
+                ease: 'power2.out'
+            });
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            gsap.to(button, {
+                scale: 1,
+                duration: 0.2,
+                ease: 'power2.out'
+            });
+        });
+        
+        button.addEventListener('click', () => {
+            gsap.to(button, {
+                scale: 0.95,
+                duration: 0.1,
+                ease: 'power2.in',
+                yoyo: true,
+                repeat: 1
+            });
+        });
+    });
+
+    // Add GSAP hover animations for close button
+    closeButtons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            gsap.to(button, {
+                scale: 1.1,
+                duration: 0.2,
+                ease: 'power2.out'
+            });
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            gsap.to(button, {
+                scale: 1,
+                duration: 0.2,
+                ease: 'power2.out'
+            });
+        });
+        
+        button.addEventListener('click', () => {
+            gsap.to(button, {
+                scale: 0.9,
+                duration: 0.1,
+                ease: 'power2.in',
+                yoyo: true,
+                repeat: 1
+            });
+        });
+    });
+
+    // Add GSAP hover animations for timeline items
+    timelineItems?.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            gsap.to(item, {
+                scale: 1.02,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            gsap.to(item, {
+                scale: 1,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+    });
+
+    // Add GSAP hover animations for stats
+    stats?.forEach(stat => {
+        stat.addEventListener('mouseenter', () => {
+            gsap.to(stat, {
+                scale: 1.05,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+        
+        stat.addEventListener('mouseleave', () => {
+            gsap.to(stat, {
+                scale: 1,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
     });
 }
 

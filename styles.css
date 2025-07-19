@@ -2013,6 +2013,7 @@ body.projects-page {
     transition: all 0.4s ease;
 }
 
+/* GSAP will handle these animations */
 .wooden-modal.active {
     opacity: 1;
     visibility: visible;
@@ -2032,7 +2033,7 @@ body.projects-page {
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(248, 112, 96, 0.2);
     transform: scale(0.8) translateY(50px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* GSAP will handle transitions */
     
     /* Nasconde completamente la scrollbar */
     scrollbar-width: none; /* Firefox */
@@ -2045,7 +2046,7 @@ body.projects-page {
 
 /* Modern scrollbar for modal */
 
-
+/* GSAP will handle this animation */
 .wooden-modal.active .wooden-window {
     transform: scale(1) translateY(0);
 }
@@ -2104,13 +2105,13 @@ body.projects-page {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    /* GSAP will handle transitions */
     box-shadow: 0 4px 15px rgba(248, 112, 96, 0.3);
 }
 
 .window-close:hover {
     background: linear-gradient(135deg, #e5654d 0%, #d4513a 100%);
-    transform: scale(1.1);
+    /* GSAP will handle transform */
     box-shadow: 0 6px 20px rgba(248, 112, 96, 0.4);
 }
 
