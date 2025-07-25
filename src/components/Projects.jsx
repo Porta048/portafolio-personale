@@ -31,12 +31,14 @@ export default function Projects() {
           <p>
             Imagine having a robot friend that can play Pokémon for you! This project is exactly that: an artificial intelligence (AI) that learns to play Pokémon games for the Game Boy Color on its own.<br/><br/>
             <b>How does it work?</b> The AI agent is made up of 4 "brains":<br/>
-            <ul style={{textAlign: 'left', margin: '0 0 0 1.2em'}}>
-              <li><b>PokemonMemoryReader</b>: reads the game's memory to get data like money, Pokémon, badges.</li>
-              <li><b>PokemonStateDetector</b>: analyzes the screen to understand if you are in battle, in a menu, or in a dialogue.</li>
-              <li><b>PokemonDQN</b>: a neural network that learns to play by observing and rewarding the best actions.</li>
-              <li><b>PokemonAI</b>: puts everything together, decides actions and learns from its own mistakes.</li>
-            </ul>
+          </p>
+          <ul style={{textAlign: 'left', margin: '0 0 0 1.2em'}}>
+            <li><b>PokemonMemoryReader</b>: reads the game's memory to get data like money, Pokémon, badges.</li>
+            <li><b>PokemonStateDetector</b>: analyzes the screen to understand if you are in battle, in a menu, or in a dialogue.</li>
+            <li><b>PokemonDQN</b>: a neural network that learns to play by observing and rewarding the best actions.</li>
+            <li><b>PokemonAI</b>: puts everything together, decides actions and learns from its own mistakes.</li>
+          </ul>
+          <p>
             <b>Technologies:</b> Deep Q-Network, Prioritized Experience Replay, Double DQN.<br/>
             <b>Goal:</b> to see how a computer can learn to catch Pokémon, win battles, and complete the game through trial and error, just like a child learning to play!<br/><br/>
             <a href="https://github.com/Porta048/pokemon-AI" target="_blank" rel="noopener noreferrer" style={{display: 'inline-block', verticalAlign: 'middle'}} aria-label="GitHub">
@@ -52,26 +54,32 @@ export default function Projects() {
             This project implements an advanced real-time posture detection system using a webcam. It leverages MediaPipe for pose estimation and an optimized machine learning model to classify sitting posture as "Correct" or "Incorrect".<br/><br/>
             <b>Project Overview:</b><br/>
             The system has been completely redesigned and improved over the original version, implementing:
-            <ul style={{textAlign: 'left', margin: '0 0 0 1.2em'}}>
-              <li>18 advanced features instead of the original 6</li>
-              <li>Optimized algorithms with Grid Search (RandomForest, GradientBoosting, SVM)</li>
-              <li>Advanced preprocessing with StandardScaler and handling of infinite values</li>
-              <li>67% reduction in false negatives</li>
-              <li>Alert system for incorrect posture</li>
-            </ul>
+          </p>
+          <ul style={{textAlign: 'left', margin: '0 0 0 1.2em'}}>
+            <li>18 advanced features instead of the original 6</li>
+            <li>Optimized algorithms with Grid Search (RandomForest, GradientBoosting, SVM)</li>
+            <li>Advanced preprocessing with StandardScaler and handling of infinite values</li>
+            <li>67% reduction in false negatives</li>
+            <li>Alert system for incorrect posture</li>
+          </ul>
+          <p>
             <b>Main Components:</b>
-            <ul style={{textAlign: 'left', margin: '0 0 0 1.2em'}}>
-              <li><b>Improved Dataset Preparation</b>: Extracts 18 advanced features from each image using MediaPipe Pose and saves them for training.</li>
-              <li><b>Optimized Model Training</b>: Uses Grid Search, 5-fold cross-validation, and advanced preprocessing for robust validation and model optimization.</li>
-              <li><b>Real-Time Posture Analyzer</b>: Analyzes posture in real time via webcam, with visual and audio alerts for incorrect posture and confidence indicators.</li>
-              <li><b>Analysis Tools</b>: Compare model performance and provide full technical documentation.</li>
-            </ul>
+          </p>
+          <ul style={{textAlign: 'left', margin: '0 0 0 1.2em'}}>
+            <li><b>Improved Dataset Preparation</b>: Extracts 18 advanced features from each image using MediaPipe Pose and saves them for training.</li>
+            <li><b>Optimized Model Training</b>: Uses Grid Search, 5-fold cross-validation, and advanced preprocessing for robust validation and model optimization.</li>
+            <li><b>Real-Time Posture Analyzer</b>: Analyzes posture in real time via webcam, with visual and audio alerts for incorrect posture and confidence indicators.</li>
+            <li><b>Analysis Tools</b>: Compare model performance and provide full technical documentation.</li>
+          </ul>
+          <p>
             <b>Results:</b><br/>
-            <ul style={{textAlign: 'left', margin: '0 0 0 1.2em'}}>
-              <li><b>Accuracy:</b> 88% (vs 71% original)</li>
-              <li><b>False Negatives:</b> Reduced by 67% (from 6 to 2)</li>
-              <li><b>Most important features:</b> head_y_offset, head_forward_distance, shoulder_slope</li>
-            </ul>
+          </p>
+          <ul style={{textAlign: 'left', margin: '0 0 0 1.2em'}}>
+            <li><b>Accuracy:</b> 88% (vs 71% original)</li>
+            <li><b>False Negatives:</b> Reduced by 67% (from 6 to 2)</li>
+            <li><b>Most important features:</b> head_y_offset, head_forward_distance, shoulder_slope</li>
+          </ul>
+          <p>
             <b>How to use:</b> Install requirements, generate the dataset, train the model, and run the real-time analyzer. Full instructions and code are available in the repository.<br/><br/>
             <a href="https://github.com/Porta048/CV-posture" target="_blank" rel="noopener noreferrer" style={{display: 'inline-block', verticalAlign: 'middle'}} aria-label="GitHub">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +90,7 @@ export default function Projects() {
         </div>
         <div className="project-card">
           <h3><a href="https://github.com/Porta048/predict-client" target="_blank" rel="noopener noreferrer" style={{color: '#222', textDecoration: 'none'}}>Customer Churn Prediction - Explainable AI Experiment</a></h3>
-          <img src="/churn_feature_importance.png" alt="Feature importance SHAP plot" style={{width: '100%', maxWidth: '420px', margin: '0 auto 1rem auto', display: 'block', borderRadius: '12px', boxShadow: '0 2px 12px rgba(0,0,0,0.07)'}} />
+          <img src="/churn_feature_importance.png" alt="Feature importance SHAP plot" className="responsive-img" style={{width: '100%', height: 'auto', maxWidth: '420px', margin: '0 auto 1rem auto', display: 'block', borderRadius: '12px', boxShadow: '0 2px 12px rgba(0,0,0,0.07)'}} />
           <p>
             This project demonstrates how to use modern machine learning and explainable AI (XAI) to predict customer churn and understand the main drivers behind it.<br/><br/>
             <b>Project Overview:</b><br/>

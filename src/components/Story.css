@@ -46,4 +46,37 @@
   .story-section {
     padding: 4rem 0.5rem 3rem 0.5rem;
   }
+}
+@media (max-width: 700px) {
+  .story-box {
+    padding: 1.2rem 0.4rem;
+    border-radius: 18px;
+  }
+  .story-section h2 {
+    font-size: 1.1rem;
+  }
+  .story-section p {
+    font-size: 0.98rem;
+  }
+  .story-section {
+    padding: 2.2rem 0.2rem 1.5rem 0.2rem;
+  }
+}
+@media (max-width: 400px) {
+  .story-box {
+    padding: 0.5rem 0.1rem;
+    border-radius: 10px;
+  }
+  .story-section h2 {
+    font-size: 0.92rem;
+  }
+  .story-section p {
+    font-size: 0.82rem;
+  }
+  .story-section {
+    padding: 1rem 0.1rem 0.7rem 0.1rem;
+  }
+}
+.story-section, .story-box {
+  overflow-x: hidden;
 } 
