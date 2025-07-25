@@ -27,15 +27,15 @@
 .project-card {
   background: #f8f9fa;
   border-radius: 20px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  box-shadow: none;
   padding: 2.5rem 2rem;
   border-left: 10px solid #222;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: none;
   text-align: center;
 }
 .project-card:hover {
-  box-shadow: 0 8px 32px rgba(80,34,45,0.13);
-  transform: translateY(-6px) scale(1.03);
+  box-shadow: none;
+  transform: none;
 }
 .project-card h3 {
   margin-top: 0;

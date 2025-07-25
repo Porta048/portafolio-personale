@@ -116,10 +116,6 @@ export default function Projects() {
             </a>
           </p>
         </div>
-        <div className="project-card">
-          <h3>Nome Progetto 2</h3>
-          <p>Descrizione breve del progetto. Puoi aggiungere un link o una demo.</p>
-        </div>
         {/* Aggiungi altri progetti qui */}
       </div>
     </section>
