@@ -129,3 +129,30 @@
 .socials-track .tech-logo:nth-child(4) { animation-delay: 2.4s; }
 .socials-track .tech-logo:nth-child(5) { animation-delay: 3.2s; }
 .socials-track .tech-logo:nth-child(6) { animation-delay: 4s; } 
+
+@media (max-width: 700px) {
+  .tech-logo {
+    width: 32px;
+    height: 32px;
+    margin: 0 6px;
+    animation-duration: 7s;
+  }
+  .socials-track .tech-logo:nth-child(2) { animation-delay: 1s; }
+  .socials-track .tech-logo:nth-child(3) { animation-delay: 2s; }
+  .socials-track .tech-logo:nth-child(4) { animation-delay: 3s; }
+  .socials-track .tech-logo:nth-child(5) { animation-delay: 4s; }
+  .socials-track .tech-logo:nth-child(6) { animation-delay: 5s; }
+}
+@media (max-width: 400px) {
+  .tech-logo {
+    width: 22px;
+    height: 22px;
+    margin: 0 2px;
+    animation-duration: 9s;
+  }
+  .socials-track .tech-logo:nth-child(2) { animation-delay: 1.5s; }
+  .socials-track .tech-logo:nth-child(3) { animation-delay: 3s; }
+  .socials-track .tech-logo:nth-child(4) { animation-delay: 4.5s; }
+  .socials-track .tech-logo:nth-child(5) { animation-delay: 6s; }
+  .socials-track .tech-logo:nth-child(6) { animation-delay: 7.5s; }
+} 
