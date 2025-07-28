@@ -4,6 +4,7 @@ import Hero from './components/Hero.jsx';
 import Story from './components/Story.jsx';
 import Socials from './components/Socials.jsx';
 import Projects from './components/Projects.jsx';
+import Certificates from './components/Certificates.jsx';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Story />
         <Socials />
         <Projects />
+        <Certificates />
       </div>
     </>
   );
