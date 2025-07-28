@@ -180,6 +180,123 @@ export default function Certificates() {
                 </a>
               </td>
             </tr>
+            <tr>
+              <td className="certificate-name">
+                <div className="certificate-info">
+                  <div className="certificate-icon">
+                    <img src="/DeepLearning.AI_idzBi4Dj-T_0.svg" alt="DeepLearning.AI Logo" width="32" height="32" />
+                  </div>
+                  <div>
+                    <h3>AI Python for Beginners</h3>
+                    <p className="certificate-id">DeepLearning.AI Course</p>
+                  </div>
+                </div>
+              </td>
+              <td>DeepLearning.AI</td>
+              <td>Jul 2025</td>
+              <td className="skills-cell">
+                <div className="skill-tags">
+                  <span className="skill-tag">python fundamentals</span>
+                  <span className="skill-tag">data structures</span>
+                  <span className="skill-tag">control flow</span>
+                  <span className="skill-tag">functions</span>
+                  <span className="skill-tag">python for AI/ML</span>
+                  <span className="skill-tag">numpy</span>
+                </div>
+              </td>
+              <td>
+                <a href="https://learn.deeplearning.ai/accomplishments/8814c303-8db2-4526-97e9-43aa1697f33c?usp=sharing" className="certificate-link" target="_blank" rel="noopener noreferrer">
+                  Verify
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td className="certificate-name">
+                <div className="certificate-info">
+                  <div className="certificate-icon">
+                    <img src="/DeepLearning.AI_idzBi4Dj-T_0.svg" alt="DeepLearning.AI Logo" width="32" height="32" />
+                  </div>
+                  <div>
+                    <h3>ChatGPT Prompt Engineering</h3>
+                    <p className="certificate-id">DeepLearning.AI Course</p>
+                  </div>
+                </div>
+              </td>
+              <td>DeepLearning.AI</td>
+              <td>Jul 2025</td>
+              <td className="skills-cell">
+                <div className="skill-tags">
+                  <span className="skill-tag">prompt engineering</span>
+                  <span className="skill-tag">chatgpt</span>
+                  <span className="skill-tag">AI interaction</span>
+                  <span className="skill-tag">conversation design</span>
+                  <span className="skill-tag">LLM optimization</span>
+                </div>
+              </td>
+              <td>
+                <a href="https://learn.deeplearning.ai/accomplishments/1fec9dba-01e5-431b-ae21-3baaf622fa48?usp=sharing" className="certificate-link" target="_blank" rel="noopener noreferrer">
+                  Verify
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td className="certificate-name">
+                <div className="certificate-info">
+                  <div className="certificate-icon">
+                    <img src="/32px-Logo_University_of_Helsinki_fi.svg.png" alt="University of Helsinki Logo" width="32" height="32" />
+                  </div>
+                  <div>
+                    <h3>Elements of AI</h3>
+                    <p className="certificate-id">University of Helsinki</p>
+                  </div>
+                </div>
+              </td>
+              <td>University of Helsinki</td>
+              <td>Jul 2025</td>
+              <td className="skills-cell">
+                <div className="skill-tags">
+                  <span className="skill-tag">artificial intelligence</span>
+                  <span className="skill-tag">AI fundamentals</span>
+                  <span className="skill-tag">machine learning basics</span>
+                  <span className="skill-tag">neural networks</span>
+                  <span className="skill-tag">AI applications</span>
+                </div>
+              </td>
+              <td>
+                <a href="https://certificates.mooc.fi/validate/8a8ug7jztrk" className="certificate-link" target="_blank" rel="noopener noreferrer">
+                  Verify
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td className="certificate-name">
+                <div className="certificate-info">
+                  <div className="certificate-icon">
+                    <img src="/icons8-google-cloud-48.png" alt="Google Cloud Logo" width="32" height="32" />
+                  </div>
+                  <div>
+                    <h3>Introduction to Large Language Models - Locales</h3>
+                    <p className="certificate-id">Google Cloud Skills Boost</p>
+                  </div>
+                </div>
+              </td>
+              <td>Google Cloud</td>
+              <td>Jul 2025</td>
+              <td className="skills-cell">
+                <div className="skill-tags">
+                  <span className="skill-tag">large language models</span>
+                  <span className="skill-tag">localization</span>
+                  <span className="skill-tag">multilingual AI</span>
+                  <span className="skill-tag">AI deployment</span>
+                  <span className="skill-tag">cloud AI</span>
+                </div>
+              </td>
+              <td>
+                <a href="https://www.cloudskillsboost.google/course_templates/539" className="certificate-link" target="_blank" rel="noopener noreferrer">
+                  Verify
+                </a>
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -381,6 +498,155 @@ export default function Certificates() {
           </div>
           <div className="mobile-verify-section">
             <a href="https://www.cloudskillsboost.google/course_templates/536" className="mobile-certificate-link" target="_blank" rel="noopener noreferrer">
+              Verify Certificate
+            </a>
+          </div>
+        </div>
+
+        <div className="mobile-certificate-card">
+          <div className="mobile-certificate-header">
+            <div className="mobile-certificate-icon">
+              <img src="/DeepLearning.AI_idzBi4Dj-T_0.svg" alt="DeepLearning.AI Logo" width="32" height="32" />
+            </div>
+            <div className="mobile-certificate-title">
+              <h3>AI Python for Beginners</h3>
+              <p className="mobile-certificate-id">DeepLearning.AI Course</p>
+            </div>
+          </div>
+          <div className="mobile-certificate-details">
+            <div className="mobile-detail-item">
+              <span className="mobile-detail-label">Issuer</span>
+              <span className="mobile-detail-value">DeepLearning.AI</span>
+            </div>
+            <div className="mobile-detail-item">
+              <span className="mobile-detail-label">Date</span>
+              <span className="mobile-detail-value">Jul 2025</span>
+            </div>
+          </div>
+          <div className="mobile-skills-section">
+            <div className="mobile-skills-label">Skills</div>
+            <div className="mobile-skill-tags">
+              <span className="mobile-skill-tag">python fundamentals</span>
+              <span className="mobile-skill-tag">data structures</span>
+              <span className="mobile-skill-tag">control flow</span>
+              <span className="mobile-skill-tag">functions</span>
+              <span className="mobile-skill-tag">python for AI/ML</span>
+              <span className="mobile-skill-tag">numpy</span>
+            </div>
+          </div>
+          <div className="mobile-verify-section">
+            <a href="https://learn.deeplearning.ai/accomplishments/8814c303-8db2-4526-97e9-43aa1697f33c?usp=sharing" className="mobile-certificate-link" target="_blank" rel="noopener noreferrer">
+              Verify Certificate
+            </a>
+          </div>
+        </div>
+
+        <div className="mobile-certificate-card">
+          <div className="mobile-certificate-header">
+            <div className="mobile-certificate-icon">
+              <img src="/DeepLearning.AI_idzBi4Dj-T_0.svg" alt="DeepLearning.AI Logo" width="32" height="32" />
+            </div>
+            <div className="mobile-certificate-title">
+              <h3>ChatGPT Prompt Engineering</h3>
+              <p className="mobile-certificate-id">DeepLearning.AI Course</p>
+            </div>
+          </div>
+          <div className="mobile-certificate-details">
+            <div className="mobile-detail-item">
+              <span className="mobile-detail-label">Issuer</span>
+              <span className="mobile-detail-value">DeepLearning.AI</span>
+            </div>
+            <div className="mobile-detail-item">
+              <span className="mobile-detail-label">Date</span>
+              <span className="mobile-detail-value">Jul 2025</span>
+            </div>
+          </div>
+          <div className="mobile-skills-section">
+            <div className="mobile-skills-label">Skills</div>
+            <div className="mobile-skill-tags">
+              <span className="mobile-skill-tag">prompt engineering</span>
+              <span className="mobile-skill-tag">chatgpt</span>
+              <span className="mobile-skill-tag">AI interaction</span>
+              <span className="mobile-skill-tag">conversation design</span>
+              <span className="mobile-skill-tag">LLM optimization</span>
+            </div>
+          </div>
+          <div className="mobile-verify-section">
+            <a href="https://learn.deeplearning.ai/accomplishments/1fec9dba-01e5-431b-ae21-3baaf622fa48?usp=sharing" className="mobile-certificate-link" target="_blank" rel="noopener noreferrer">
+              Verify Certificate
+            </a>
+          </div>
+        </div>
+
+        <div className="mobile-certificate-card">
+          <div className="mobile-certificate-header">
+            <div className="mobile-certificate-icon">
+              <img src="/32px-Logo_University_of_Helsinki_fi.svg.png" alt="University of Helsinki Logo" width="32" height="32" />
+            </div>
+            <div className="mobile-certificate-title">
+              <h3>Elements of AI</h3>
+              <p className="mobile-certificate-id">University of Helsinki</p>
+            </div>
+          </div>
+          <div className="mobile-certificate-details">
+            <div className="mobile-detail-item">
+              <span className="mobile-detail-label">Issuer</span>
+              <span className="mobile-detail-value">University of Helsinki</span>
+            </div>
+            <div className="mobile-detail-item">
+              <span className="mobile-detail-label">Date</span>
+              <span className="mobile-detail-value">Jul 2025</span>
+            </div>
+          </div>
+          <div className="mobile-skills-section">
+            <div className="mobile-skills-label">Skills</div>
+            <div className="mobile-skill-tags">
+              <span className="mobile-skill-tag">artificial intelligence</span>
+              <span className="mobile-skill-tag">AI fundamentals</span>
+              <span className="mobile-skill-tag">machine learning basics</span>
+              <span className="mobile-skill-tag">neural networks</span>
+              <span className="mobile-skill-tag">AI applications</span>
+            </div>
+          </div>
+          <div className="mobile-verify-section">
+            <a href="https://certificates.mooc.fi/validate/8a8ug7jztrk" className="mobile-certificate-link" target="_blank" rel="noopener noreferrer">
+              Verify Certificate
+            </a>
+          </div>
+        </div>
+
+        <div className="mobile-certificate-card">
+          <div className="mobile-certificate-header">
+            <div className="mobile-certificate-icon">
+              <img src="/icons8-google-cloud-48.png" alt="Google Cloud Logo" width="32" height="32" />
+            </div>
+            <div className="mobile-certificate-title">
+              <h3>Introduction to Large Language Models - Locales</h3>
+              <p className="mobile-certificate-id">Google Cloud Skills Boost</p>
+            </div>
+          </div>
+          <div className="mobile-certificate-details">
+            <div className="mobile-detail-item">
+              <span className="mobile-detail-label">Issuer</span>
+              <span className="mobile-detail-value">Google Cloud</span>
+            </div>
+            <div className="mobile-detail-item">
+              <span className="mobile-detail-label">Date</span>
+              <span className="mobile-detail-value">Jul 2025</span>
+            </div>
+          </div>
+          <div className="mobile-skills-section">
+            <div className="mobile-skills-label">Skills</div>
+            <div className="mobile-skill-tags">
+              <span className="mobile-skill-tag">large language models</span>
+              <span className="mobile-skill-tag">localization</span>
+              <span className="mobile-skill-tag">multilingual AI</span>
+              <span className="mobile-skill-tag">AI deployment</span>
+              <span className="mobile-skill-tag">cloud AI</span>
+            </div>
+          </div>
+          <div className="mobile-verify-section">
+            <a href="https://www.cloudskillsboost.google/course_templates/539" className="mobile-certificate-link" target="_blank" rel="noopener noreferrer">
               Verify Certificate
             </a>
           </div>

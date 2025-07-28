@@ -7,6 +7,63 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.certificates-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 160px 30px, #ddd, transparent),
+    radial-gradient(2px 2px at 200px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 240px 40px, #eee, transparent),
+    radial-gradient(1px 1px at 280px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 320px 30px, #ddd, transparent),
+    radial-gradient(2px 2px at 360px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 400px 40px, #eee, transparent),
+    radial-gradient(1px 1px at 440px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 480px 30px, #ddd, transparent),
+    radial-gradient(2px 2px at 520px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 560px 40px, #eee, transparent),
+    radial-gradient(1px 1px at 600px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 640px 30px, #ddd, transparent),
+    radial-gradient(2px 2px at 680px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 720px 40px, #eee, transparent),
+    radial-gradient(1px 1px at 760px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 800px 30px, #ddd, transparent),
+    radial-gradient(2px 2px at 840px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 880px 40px, #eee, transparent),
+    radial-gradient(1px 1px at 920px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 960px 30px, #ddd, transparent),
+    radial-gradient(2px 2px at 1000px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 1040px 40px, #eee, transparent),
+    radial-gradient(1px 1px at 1080px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 1120px 30px, #ddd, transparent),
+    radial-gradient(2px 2px at 1160px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 1200px 40px, #eee, transparent);
+  background-repeat: repeat;
+  background-size: 1200px 120px;
+  animation: particleFloat 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-120px);
+  }
 }
 
 .certificates-section h2 {
@@ -15,17 +72,23 @@
   margin-bottom: 3rem;
   color: #222;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .certificates-table-container {
   width: 100%;
   max-width: 1200px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
   padding: 2rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .certificates-table {
