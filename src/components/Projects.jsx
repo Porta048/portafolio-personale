@@ -6,7 +6,7 @@ export default function Projects() {
   return (
     <section className="projects-section" style={{position: 'relative', overflow: 'hidden'}}>
       <Threads style={{position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 0}} color={[0,0,0]} amplitude={1} distance={0.7} />
-      <h2>I miei progetti</h2>
+      <h2>My Projects</h2>
       <div className="projects-socials" style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginBottom: '2rem', position: 'relative', zIndex: 1 }}>
         <a href="https://github.com/Porta048" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,27 +89,37 @@ export default function Projects() {
           </p>
         </div>
         <div className="project-card">
-          <h3><a href="https://github.com/Porta048/predict-client" target="_blank" rel="noopener noreferrer" style={{color: '#222', textDecoration: 'none'}}>Customer Churn Prediction - Explainable AI Experiment</a></h3>
-          <img src="/churn_feature_importance.png" alt="Feature importance SHAP plot" className="responsive-img" style={{width: '100%', height: 'auto', maxWidth: '420px', margin: '0 auto 1rem auto', display: 'block', borderRadius: '12px', boxShadow: '0 2px 12px rgba(0,0,0,0.07)'}} />
+          <h3><a href="https://github.com/Porta048/predict-client/tree/main/customer-churn-prediction" target="_blank" rel="noopener noreferrer" style={{color: '#222', textDecoration: 'none'}}>Customer Churn Prediction System - Machine Learning</a></h3>
+          <img src="/risultato .png" alt="Customer Churn Analysis Results Dashboard" className="responsive-img" style={{width: '100%', height: 'auto', maxWidth: '420px', margin: '0 auto 1rem auto', display: 'block', borderRadius: '12px', boxShadow: '0 2px 12px rgba(0,0,0,0.07)'}} />
           <p>
-            This project demonstrates how to use modern machine learning and explainable AI (XAI) to predict customer churn and understand the main drivers behind it.<br/><br/>
+            A comprehensive **Customer Churn Prediction System** with modern web interface, advanced machine learning models, and AI explainability features.<br/><br/>
             <b>Project Overview:</b><br/>
-            <ul style={{textAlign: 'left', margin: '0 0 0 1.2em'}}>
-              <li><b>Data Simulation:</b> Synthetic customer data is generated to mimic real-world business scenarios, including features like satisfaction score, support calls, payment delays, contract length, and internet speed.</li>
-              <li><b>Model Training:</b> An advanced neural network is trained to predict the probability that a customer will leave (churn), using the simulated data.</li>
-              <li><b>Explainability:</b> SHAP (SHapley Additive exPlanations) is used to interpret the model's predictions, both globally (feature importance) and locally (individual customer explanations).</li>
-              <li><b>Interactive Dashboard:</b> A Streamlit dashboard displays high-risk customers in real time, their main churn drivers, and a global feature importance plot. The dashboard can be extended with alerting and filtering features.</li>
-            </ul>
-            <b>Feature Importance Visualization:</b><br/>
-            The SHAP plot shows the impact of each feature on the churn prediction. Each dot represents a customer; color indicates the feature value (blue = low, pink = high). Features at the top are the most influential for the model's decisions.<br/><br/>
-            <b>About the Experiment:</b><br/>
-            <ul style={{textAlign: 'left', margin: '0 0 0 1.2em'}}>
-              <li><b>Data:</b> Simulated customer data with features such as satisfaction score, support calls, payment delays, contract length, and internet speed.</li>
-              <li><b>Model:</b> Advanced neural network trained to predict churn probability.</li>
-              <li><b>Explainability:</b> SHAP is used to interpret the model's predictions and highlight the main drivers of churn risk for each customer.</li>
-            </ul>
-            This experiment demonstrates how modern AI can not only predict business outcomes, but also provide actionable insights for customer retention strategies.<br/><br/>
-            <a href="https://github.com/Porta048/predict-client" target="_blank" rel="noopener noreferrer" style={{display: 'inline-block', verticalAlign: 'middle'}} aria-label="GitHub">
+            This system combines multiple machine learning algorithms with an intuitive web interface to predict customer churn and provide actionable business insights.
+          </p>
+          <ul style={{textAlign: 'left', margin: '0 0 0 1.2em'}}>
+            <li><b>5 ML Algorithms:</b> Random Forest, Gradient Boosting, Logistic Regression, SVM, Neural Network</li>
+            <li><b>Automatic Optimization:</b> Grid Search for hyperparameter tuning</li>
+            <li><b>Cross-Validation:</b> Robust 5-fold validation for model reliability</li>
+            <li><b>Model Selection:</b> Automatic selection of the best performing model for production</li>
+          </ul>
+          <p>
+            <b>Key Features:</b>
+          </p>
+          <ul style={{textAlign: 'left', margin: '0 0 0 1.2em'}}>
+            <li><b>Modern Web Interface:</b> Responsive design with intuitive forms and real-time predictions</li>
+            <li><b>AI Explainability:</b> SHAP and LIME explanations for model interpretability</li>
+            <li><b>Risk Assessment:</b> Visual risk indicators and probability scores</li>
+            <li><b>Business Insights:</b> Detailed analysis of factors influencing churn decisions</li>
+            <li><b>Model Management:</b> Version tracking, performance monitoring, and health checks</li>
+          </ul>
+          <p>
+            <b>Technical Architecture:</b><br/>
+            The system includes a Python backend with scikit-learn models, a modern HTML/CSS/JavaScript frontend, and RESTful API endpoints for seamless integration.
+          </p>
+          <p>
+            <b>Results & Impact:</b><br/>
+            The system provides accurate churn predictions with confidence scores, helping businesses identify at-risk customers and implement targeted retention strategies. The explainable AI features make the predictions transparent and actionable for business stakeholders.<br/><br/>
+            <a href="https://github.com/Porta048/predict-client/tree/main/customer-churn-prediction" target="_blank" rel="noopener noreferrer" style={{display: 'inline-block', verticalAlign: 'middle'}} aria-label="GitHub">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.49 2.87 8.3 6.84 9.64.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0 1 12 6.84c.85.004 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" fill="#181717"/>
               </svg>
