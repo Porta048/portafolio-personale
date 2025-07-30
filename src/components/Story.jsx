@@ -14,6 +14,9 @@ export default function Story() {
         <p>
           I graduated with a diploma in Computer Science, which provided me with a strong theoretical and practical background in programming, algorithms, and software engineering. My journey is driven by curiosity and the desire to always learn something new, with the goal of contributing to innovative projects and making a difference in the tech world. I am constantly looking for new challenges and opportunities to grow, both professionally and personally.
         </p>
+        <p>
+          Starting from January 2025, I have the exciting opportunity to work as a Software Developer for Tok tech TD, an innovative English company. This role allows me to apply my technical skills in a professional environment while continuing to expand my knowledge and contribute to cutting-edge projects in the technology sector.
+        </p>
       </div>
     </section>
   );

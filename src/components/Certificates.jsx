@@ -297,6 +297,33 @@ export default function Certificates() {
                 </a>
               </td>
             </tr>
+            <tr>
+              <td className="certificate-name">
+                <div className="certificate-info">
+                  <div className="certificate-icon">
+                    <img src="/idfpy1k-Nt_1753721553795.jpeg" alt="Epicode Logo" width="32" height="32" />
+                  </div>
+                  <div>
+                    <h3>Epicode Bootcamp</h3>
+                    <p className="certificate-id">Full Stack Development</p>
+                  </div>
+                </div>
+              </td>
+              <td>Epicode</td>
+              <td>In Progress</td>
+              <td className="skills-cell">
+                <div className="skill-tags">
+                  <span className="skill-tag">full stack development</span>
+                  <span className="skill-tag">web development</span>
+                  <span className="skill-tag">frontend</span>
+                  <span className="skill-tag">backend</span>
+                  <span className="skill-tag">database</span>
+                </div>
+              </td>
+              <td>
+                <span className="certificate-status">In Progress</span>
+              </td>
+            </tr>
 
           </tbody>
         </table>
@@ -650,6 +677,41 @@ export default function Certificates() {
             <a href="https://www.cloudskillsboost.google/course_templates/539" className="mobile-certificate-link" target="_blank" rel="noopener noreferrer">
               Verify Certificate
             </a>
+          </div>
+        </div>
+
+        <div className="mobile-certificate-card">
+          <div className="mobile-certificate-header">
+            <div className="mobile-certificate-icon">
+              <img src="/idfpy1k-Nt_1753721553795.jpeg" alt="Epicode Logo" width="32" height="32" />
+            </div>
+            <div className="mobile-certificate-title">
+              <h3>Epicode Bootcamp</h3>
+              <p className="mobile-certificate-id">Full Stack Development</p>
+            </div>
+          </div>
+          <div className="mobile-certificate-details">
+            <div className="mobile-detail-item">
+              <span className="mobile-detail-label">Issuer</span>
+              <span className="mobile-detail-value">Epicode</span>
+            </div>
+            <div className="mobile-detail-item">
+              <span className="mobile-detail-label">Date</span>
+              <span className="mobile-detail-value">In Progress</span>
+            </div>
+          </div>
+          <div className="mobile-skills-section">
+            <div className="mobile-skills-label">Skills</div>
+            <div className="mobile-skill-tags">
+              <span className="mobile-skill-tag">full stack development</span>
+              <span className="mobile-skill-tag">web development</span>
+              <span className="mobile-skill-tag">frontend</span>
+              <span className="mobile-skill-tag">backend</span>
+              <span className="mobile-skill-tag">database</span>
+            </div>
+          </div>
+          <div className="mobile-verify-section">
+            <span className="mobile-certificate-status">In Progress</span>
           </div>
         </div>
 
